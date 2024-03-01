@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEOVYK - Official Site</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
@@ -28,15 +30,15 @@
 
     <!-- Content Sections -->
     <section id="music" class="sub-page">
-        <a href="https://neovyk.bandcamp.com">Bandcamp</a><br>
-        <a href="https://soundcloud.com/neovyk">Soundcloud</a><br>
-        <a href="https://open.spotify.com/artist/7hafaBs1ZK7G2EIi71wRX2">Spotify</a><br>
-        <a href="https://music.apple.com/us/artist/neovyk/1653539347">Apple Music</a>
+        <a href="https://neovyk.bandcamp.com" target="_blank">Bandcamp</a><br>
+        <a href="https://soundcloud.com/neovyk" target="_blank>Soundcloud</a><br>
+        <a href="https://open.spotify.com/artist/7hafaBs1ZK7G2EIi71wRX2"> target="_blankSpotify</a><br>
+        <a href="https://music.apple.com/us/artist/neovyk/1653539347"> target="_blankApple Music</a>
     </section>
 
     <section id="socials" class="sub-page">
-        <a href="https://www.instagram.com/neovyk">Instagram</a><br>
-        <a href="https://www.youtube.com/@neovyk">Youtube</a>
+        <a href="https://www.instagram.com/neovyk"> target="_blankInstagram</a><br>
+        <a href="https://www.youtube.com/@neovyk"> target="_blankYoutube</a>
     </section>
 
     <!-- MP3 Player -->
@@ -62,5 +64,12 @@
 
     <!-- JavaScript goes here -->
     <script src="scripts/script.js"></script>
+    <!-- jQuery UI script for window dragging -->
+    <script>
+        $(function () {
+            $(".sub-page").draggable();
+        });
+    </script>
+
 </body>
 </html>
