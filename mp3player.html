@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEOVYK MP3 Player</title>
+    <link rel="stylesheet" href="styles/mp3player.css">
+</head>
+<body>
+    <div id="mp3PlayerWindow" class="mp3-player">
+        <div class="mp3-player-header">
+            <span class="mp3-player-title">NEOVYK MP3 Player</span>
+            <button id="closeMp3Player">X</button>
+        </div>
+        <div class="mp3-player-main">
+            <div class="mp3-player-visualizer" id="visualizer"></div>
+            <div class="mp3-player-controls">
+                <button onclick="previous()">Previous</button>
+                <button onclick="togglePlay()">Play/Pause</button>
+                <button onclick="next()">Next</button>
+            </div>
+            <div class="mp3-player-playlist" id="playlist"></div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="scripts/visualizer.js"></script>
+    <script src="scripts/mp3player.js"></script>
+</body>
+</html>
