@@ -111,6 +111,37 @@ body {
     text-align: center;
 }
 
+/* Updated styles for window-like container */
+.window-container {
+    position: absolute;
+    width: 400px; /* Set initial width */
+    height: 300px; /* Set initial height */
+    background-color: #1a1a1a;
+    border: 2px solid teal;
+    overflow: hidden;
+}
+
+.window-header {
+    background-color: teal;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.window-header .close-button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.window-content {
+    padding: 10px;
+    height: calc(100% - 30px); /* Adjust content height considering header height */
+    overflow-y: auto;
+}
+
+
 /* Remove the conflicting .description styles */
 /* .description {
     display: none;
