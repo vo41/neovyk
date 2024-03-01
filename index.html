@@ -49,18 +49,24 @@
         nav a {
             color: white;
             text-decoration: none;
+            cursor: pointer;
         }
 
         section {
             margin-bottom: 30px;
-        }
-
-        .sub-page {
             display: none; /* Hide by default */
         }
     </style>
 </head>
 <body>
+    <!-- Banner with photo and info on the right -->
+    <header>
+        <img src="https://i1.sndcdn.com/avatars-ltbL73iPvlWYw2Km-1r59Wg-t500x500.jpg" alt="NEOVYK's Picture">
+        <div>
+            <p>Electronic Artist & Record Producer</p>
+        </div>
+    </header>
+
     <!-- Main Menu with Windows 95 style -->
     <nav>
         <ul>
@@ -74,7 +80,7 @@
     </nav>
 
     <!-- Content Sections -->
-    <section id="music" class="sub-page">
+    <section id="music">
         <!-- Add your music files and visualizer here -->
         <!-- Example: -->
         <audio controls>
@@ -83,19 +89,19 @@
         </audio>
     </section>
 
-    <section id="search" class="sub-page">
+    <section id="search">
         <!-- Add your search engine code here -->
         <!-- Example: -->
         <input type="text" placeholder="Search...">
         <button>Search</button>
     </section>
 
-    <section id="internet" class="sub-page">
+    <section id="internet">
         <!-- Content for the Internet section goes here -->
         <p>Placeholder for Internet content</p>
     </section>
 
-    <section id="player" class="sub-page">
+    <section id="player">
         <!-- Add your media player code here -->
         <audio controls>
             <source src="your_music_file.mp3" type="audio/mp3">
@@ -104,11 +110,53 @@
         <button onclick="shuffleSongs()">Shuffle</button>
     </section>
 
-    <section id="notepad" class="sub-page">
+    <section id="notepad">
         <!-- Add your notepad or newsletter subscription form here -->
         <!-- Example: -->
         <textarea placeholder="Leave a message..."></textarea>
         <button>Subscribe</button>
     </section>
 
-    <section
+    <section id="archive">
+        <!-- Folders in the archive -->
+        <div class="folder">
+            <a href="#wallpapers">Wallpapers</a>
+        </div>
+        <!-- Add more folders as needed -->
+    </section>
+
+    <script>
+        // JavaScript functions go here
+        function shuffleSongs() {
+            // Add logic for shuffling songs
+        }
+
+        // Function to show the selected sub-page
+        function showSubPage(pageId) {
+            // Hide all sub-pages
+            var subPages = document.querySelectorAll('section');
+            subPages.forEach(function(page) {
+                page.style.display = 'none';
+            });
+
+            // Show the selected sub-page
+            var selectedPage = document.getElementById(pageId);
+            if (selectedPage) {
+                selectedPage.style.display = 'block';
+            }
+        }
+
+        // Function to handle menu clicks
+        document.addEventListener('DOMContentLoaded', function() {
+            var menuLinks = document.querySelectorAll('nav a');
+            menuLinks.forEach(function(link) {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    var pageId = link.getAttribute('href').substring(1);
+                    showSubPage(pageId);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
