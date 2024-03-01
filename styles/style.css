@@ -2,17 +2,26 @@ body {
     background-color: #1a1a1a;
     color: white;
     font-family: 'Courier New', monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
 }
 
 .windows95 {
     background-color: #008080; /* Teal, similar to Windows 95 */
     padding: 10px;
     margin-bottom: 20px;
+    width: 200px; /* Adjust as needed */
+    text-align: center;
 }
 
 .windows95 ul {
     list-style-type: none;
     padding: 0;
+    margin: 0;
 }
 
 .windows95 li {
@@ -23,4 +32,23 @@ body {
     color: white;
     text-decoration: none;
     cursor: pointer;
+    display: block;
 }
+
+/* Hide sub-pages by default */
+.sub-page {
+    display: none;
+}
+
+/* Show sub-page when corresponding menu item is clicked */
+.sub-page.active {
+    display: block;
+}
+
+/* Add any additional styling you need */
+
+/* Style for the search bar */
+.search-bar {
+    margin-top: 20px;
+}
+
