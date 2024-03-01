@@ -33,11 +33,19 @@ body {
     text-decoration: none;
     cursor: pointer;
     display: block;
+    padding: 5px;
+    transition: background-color 0.3s;
+}
+
+.windows95 a:hover {
+    background-color: #006666; /* Darker teal on hover, adjust as needed */
 }
 
 /* Hide sub-pages by default */
 .sub-page {
     display: none;
+    width: 100%; /* Ensure sub-pages take full width */
+    text-align: center;
 }
 
 /* Show sub-page when corresponding menu item is clicked */
@@ -51,4 +59,3 @@ body {
 .search-bar {
     margin-top: 20px;
 }
-
