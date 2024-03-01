@@ -4,12 +4,22 @@
 function openWindow(contentId) {
     const contentWindow = document.getElementById(contentId);
     contentWindow.classList.add('active');
+
+    // If the content is an audio player, initialize it
+    if (contentId === 'player') {
+        initializeAudioPlayer();
+    }
 }
 
 // Function to close a window
 function closeWindow(contentId) {
     const contentWindow = document.getElementById(contentId);
     contentWindow.classList.remove('active');
+
+    // If the content is an audio player, stop the playback
+    if (contentId === 'player') {
+        stopAudioPlayer();
+    }
 }
 
 // Get all the menu items and corresponding sub-pages
@@ -34,8 +44,6 @@ menuItems.forEach((menuItem, index) => {
         openWindow(contentId);
     });
 });
-
-// script.js
 
 // Function to open a window for the specified content
 function openWindow(contentId) {
