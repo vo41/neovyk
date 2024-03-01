@@ -109,7 +109,7 @@
         <a href="https://www.youtube.com/@neovyk">Youtube</a>
     </section>
 
-  <!-- Free MP3 Player -->
+ <!-- Free MP3 Player -->
 <section id="player" class="sub-page" style="position: absolute; top: 100px; left: 100px; display: none; background-color: #1a1a1a; border: 1px solid #666; padding: 10px;">
     <!-- Add your media player code here -->
     <div>
@@ -136,13 +136,17 @@
         <button>Subscribe</button>
     </section>
 
-    <section id="archive" class="sub-page">
-        <!-- Folders in the archive -->
-        <div class="folder">
-            <a href="#wallpapers">Wallpapers</a>
-        </div>
-        <!-- Add more folders as needed -->
-    </section>
+<!-- Archives Section -->
+<section id="archive" class="sub-page">
+    <!-- Folders in the archive -->
+    <div class="folder" onclick="showMP3Files()">
+        <a href="#">Wallpapers</a>
+    </div>
+    <div class="folder" onclick="showMP3Files()">
+        <a href="#">MP3</a>
+    </div>
+    <!-- Add more folders as needed -->
+</section>
 
     
     <script>
@@ -172,8 +176,8 @@ var songs = [
 ];
 
     // Function to close the player window
-    function closePlayer() {
-    document.getElementById("player").style.display = 'none';
+        function closePlayer() {
+            document.getElementById("player").style.display = 'none';
         }
 
         // Function to show the player window
@@ -271,6 +275,28 @@ function visualize() {
     draw();
 }
 
+// Function to show MP3 files
+    function showMP3Files() {
+        // Replace this with logic to dynamically generate links for MP3 files
+        var mp3Files = ["01. Arrival.mp3", "02. Worlds Away.mp3", "03. Explore.mp3", "04. Zero Gravity.mp3", "05. Exo.mp3", "06. Delta.mp3", "07. Oracle.mp3", "08. Aeon.mp3", "09. Pathfinder.mp3", "10. Wandering.mp3"];
+        
+        var mp3List = document.createElement("div");
+        mp3Files.forEach(function(file) {
+            var mp3Link = document.createElement("a");
+            mp3Link.href = "#";
+            mp3Link.innerText = file;
+            mp3Link.onclick = function() {
+                showPlayer();
+                playSong(); // Replace with logic to play the selected song
+            };
+            mp3List.appendChild(mp3Link);
+        });
+
+        // Replace "archive" with the actual ID of the archive section
+        document.getElementById("archive").innerHTML = "";
+        document.getElementById("archive").appendChild(mp3List);
+    }
+        
 
     // Function to show the selected sub-page
     function showSubPage(pageId) {
