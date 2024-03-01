@@ -110,25 +110,61 @@
     </section>
 
 <!-- Free MP3 Player -->
-<section id="player" class="sub-page" style="position: absolute; top: 100px; left: 100px; display: none; background-color: #1a1a1a; border: 1px solid #666; padding: 10px;">
+<section id="player" class="sub-page" style="position: absolute; top: 100px; left: 100px; display: none; background-color: #1a1a1a; border: 1px solid #666; padding: 10px; border-radius: 20px;">
 
     <!-- Close button (X icon) -->
-    <button id="closeBtn" onclick="closePlayer()" style="position: absolute; top: 5px; right: 5px; background: none; border: none; color: #fff; font-size: 18px; cursor: pointer;">&times;</button>
+    <button id="closeBtn" onclick="closePlayer()" style="position: absolute; top: 10px; right: 10px; background: none; border: none; color: #fff; font-size: 18px; cursor: pointer;">&times;</button>
 
     <!-- Add your media player code here -->
-    <div>
-        <canvas id="visualizer" width="600" height="100"></canvas>
-    </div>
-    <audio id="audioPlayer" controls>
-        <!-- Example: Remove the source element -->
-        Your browser does not support the audio element.
-    </audio>
-    <div>
-        <button id="playPauseBtn" onclick="togglePlayPause()"><i class="fa fa-play"></i></button>
-        <button onclick="toggleShuffle()"><i class="fa fa-random"></i></button>
-        <button onclick="playPrevious()"><i class="fa fa-step-backward"></i></button>
-        <button onclick="playNext()"><i class="fa fa-step-forward"></i></button>
-    </div>
+    <div class="player">
+        <div class="wrapper">
+            <div class="details">
+                <div class="now-playing">PLAYING x OF y</div>
+                <div class="track-art" style="margin: 25px; height: 250px; width: 250px; border:2px solid 	#FFFAFA; background-size: cover; background-position: center; border-radius: 50%;"></div>
+                <div class="track-name" style="font-size: 2.5rem;"></div>
+                <div class="track-artist" style="margin-top: 5px; font-size: 1.5rem;"></div>
+            </div>
+
+            <div class="slider_container">
+                <div class="current-time" style="padding: 10px;"></div>
+                <input type="range" min="1" max="100" value="0" class="seek_slider" onchange="seekTo()" style="-webkit-appearance: none; -moz-appearance: none; appearance: none; height: 5px; background: #83A9FF; -webkit-transition: .2s; transition: opacity .2s;">
+                <div class="total-duration" style="padding: 10px;"></div>
+            </div>
+
+            <div class="slider_container">
+                <i class="fa fa-volume-down" style="padding: 10px; cursor: pointer;"></i>
+                <input type="range" min="1" max="100" value="99" class="volume_slider" onchange="setVolume()" style="-webkit-appearance: none; -moz-appearance: none; appearance: none; height: 5px; background: #83A9FF; -webkit-transition: .2s; transition: opacity .2s;">
+                <i class="fa fa-volume-up" style="padding: 10px; cursor: pointer;"></i>
+            </div>
+
+            <div class="buttons" style="display: flex; flex-direction: row; align-items: center; margin-bottom: 30px;">
+                <div class="random-track" onclick="randomTrack()" style="padding: 25px; opacity: 0.8; transition: opacity .2s; cursor: pointer;">
+                    <i class="fas fa-random fa-2x" title="random" style="color: #fff;"></i>
+                </div>
+                <div class="prev-track" onclick="prevTrack()" style="padding: 25px; opacity: 0.8; transition: opacity .2s; cursor: pointer;">
+                    <i class="fa fa-step-backward fa-2x" style="color: #fff;"></i>
+                </div>
+                <div class="playpause-track" onclick="playpauseTrack()" style="padding: 25px; opacity: 0.8; transition: opacity .2s; cursor: pointer;">
+                    <i class="fa fa-play-circle fa-5x" style="color: #fff;"></i>
+                </div>
+                <div class="next-track" onclick="nextTrack()" style="padding: 25px; opacity: 0.8; transition: opacity .2s; cursor: pointer;">
+                    <i class="fa fa-step-forward fa-2x" style="color: #fff;"></i>
+                </div>
+                <div class="repeat-track" onclick="repeatTrack()" style="padding: 25px; opacity: 0.8; transition: opacity .2s; cursor: pointer;">
+                    <i class="fa fa-repeat fa-2x" title="repeat" style="color: #fff;"></i>
+                </div>
+            </div>
+
+            <div id="wave" style="height: 70px; display: flex; justify-content: center; align-items: center;">
+                <span class="stroke" style="background: #f1f1f1; height: 150%; width: 10px; border-radius: 50px; margin: 0 5px; animation: animate 1.4s linear infinite;"></span>
+                <span class="stroke" style="background: #f1f1f1; height: 150%; width: 10px; border-radius: 50px; margin: 0 5px; animation: animate 1.4s linear infinite;"></span>
+                <span class="stroke" style="background: #f1f1f1; height: 150%; width: 10px; border-radius: 50px; margin: 0 5px; animation: animate 1.4s linear infinite;"></span>
+                <span class="stroke" style="background: #f1f1f1; height: 150%; width: 10px; border-radius: 50px; margin: 0 5px; animation: animate 1.4s linear infinite;"></span>
+                <span class="stroke" style="background: #f1f1f1; height: 150%; width: 10px; border-radius: 50px; margin: 0 5px; animation: animate 1.4s linear infinite;"></span>
+                <span class="stroke" style="background: #f1f1f1; height: 150%; width: 10px; border-radius: 50px; margin: 0 5px; animation: animate 1.4s linear infinite;"></span>
+                <span class="stroke" style="background: #f1f1f1; height: 150%; width: 10px; border-radius: 50px; margin: 0 5px; animation: animate 1.4s linear infinite;"></span>
+            </div>  
+        </div
 
 </section>
 
@@ -304,11 +340,11 @@ function visualize() {
             }
         });
 
-// Function to stop music and close player
+  // Function to stop the music when closing the player window
         function closePlayer() {
             audio.pause();
             isPlaying = false;
-            document.getElementById("playPauseBtn").innerText = "Play";
+            document.getElementById("playPauseBtn").innerHTML = '<i class="fa fa-play"></i>';
             document.getElementById("player").style.display = "none";
         }
         
