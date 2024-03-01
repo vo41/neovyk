@@ -1,18 +1,9 @@
-// modal.js
 document.addEventListener('DOMContentLoaded', function () {
-    const openButton = document.getElementById('openPlayerModal');
     const modal = document.getElementById('playerModal');
-    const closeButton = document.getElementById('closePlayerModal');
     const playerContent = document.getElementById('playerContent');
 
-    openButton.addEventListener('click', function () {
-        modal.style.display = 'block';
-        loadPlayerContent();
-    });
-
-    closeButton.addEventListener('click', function () {
-        modal.style.display = 'none';
-    });
+    modal.style.display = 'block'; // This line should be present to display the modal by default
+    loadPlayerContent();
 
     function loadPlayerContent() {
         fetch('player.html')
