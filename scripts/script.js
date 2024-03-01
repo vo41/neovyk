@@ -14,7 +14,7 @@ function showSubPage(pageId) {
 
     // Ensure the search bar remains visible only for the Archives section
     var searchBar = document.querySelector('.search-bar');
-    searchBar.style.display = pageId === 'archive' ? 'block' : 'none';
+    searchBar.style.display = pageId === 'archives' ? 'block' : 'none';
 }
 
 // Function to handle menu clicks
@@ -28,4 +28,3 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
-
