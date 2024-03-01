@@ -1,28 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEOVYK - Official Site</title>
     <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="styles/mp3player.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-        integrity="sha512-xN3+8w+CRmp5X9rruq3gK3Nk4CV+Z/r5t8+seTqEs6AtjQvF8o+Cw6ff6SVmXmrQ7F/J/Z5lFxCVOZ5xQfEL4Q=="
-        crossorigin="anonymous" />
-    <script src="scripts/mp3player.js"></script>
+    <link rel="stylesheet" href="styles/modal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-xN3+8w+CRmp5X9rruq3gK3Nk4CV+Z/r5t8+seTqEs6AtjQvF8o+Cw6ff6SVmXmrQ7F/J/Z5lFxCVOZ5xQfEL4Q==" crossorigin="anonymous" />
 </head>
-
 <body>
     <!-- Banner with photo and info on the right -->
-<header class="banner">
-    <div class="image-box">
+    <header>
         <img src="https://i1.sndcdn.com/avatars-ltbL73iPvlWYw2Km-1r59Wg-t500x500.jpg" alt="NEOVYK's Picture">
-    </div>
-    <div class="info-box">
-        <p>Electronic Artist & Record Producer</p>
-    </div>
-</header>
+        <div>
+            <p>Electronic Artist & Record Producer</p>
+        </div>
+    </header>
 
     <!-- Main Menu -->
     <nav class="windows95">
@@ -31,57 +24,58 @@
             <li><a href="#socials">Socials</a></li>
             <li><a href="#player">MP3 Player</a></li>
             <li><a href="#messenger">Messenger</a></li>
-            <li><a href="#archives">Archives</a></li>
+            <li><a href="#archives">Archive</a></li>
         </ul>
     </nav>
 
     <!-- Content Sections -->
     <section id="music" class="sub-page">
-        <a href="https://neovyk.bandcamp.com" target="_blank">Bandcamp</a><br>
-        <a href="https://soundcloud.com/neovyk" target="_blank">Soundcloud</a><br>
-        <a href="https://open.spotify.com/artist/7hafaBs1ZK7G2EIi71wRX2" target="_blank">Spotify</a><br>
-        <a href="https://music.apple.com/us/artist/neovyk/1653539347" target="_blank">Apple Music</a>
+        <p>Check out my music on:</p>
+        <a href="https://neovyk.bandcamp.com">Bandcamp</a><br>
+        <a href="https://soundcloud.com/neovyk">Soundcloud</a><br>
+        <a href="https://open.spotify.com/artist/7hafaBs1ZK7G2EIi71wRX2">Spotify</a><br>
+        <a href="https://music.apple.com/us/artist/neovyk/1653539347">Apple Music</a>
     </section>
 
     <section id="socials" class="sub-page">
-        <a href="https://www.instagram.com/neovyk" target="_blank">Instagram</a><br>
-        <a href="https://www.youtube.com/@neovyk" target="_blank">Youtube</a>
+        <p>Connect with me on:</p>
+        <a href="https://www.instagram.com/neovyk">Instagram</a><br>
+        <a href="https://www.youtube.com/@neovyk">Youtube</a>
     </section>
 
-    <!-- MP3 Player -->
-<section id="player" class="sub-page">
-    <button onclick="openPlayerModal()">Open MP3 Player</button>
-    <div id="playerModal" class="modal">
-        <div id="playerContent"></div>
-        <button id="closePlayerModal" onclick="closePlayerModal()">Close</button>
-    </div>
-</section>
-
-
+    <!-- Free MP3 Player -->
+    <section id="player" class="sub-page">
+        <button onclick="openPlayerModal()">Open MP3 Player</button>
+        <div id="playerModal" class="modal">
+            <div id="playerContent"></div>
+            <button id="closePlayerModal" onclick="closePlayerModal()">Close</button>
+        </div>
+    </section>
 
     <section id="messenger" class="sub-page">
-        <!-- Your notepad content goes here -->
+        <textarea placeholder="Leave a message..."></textarea>
+        <button>Subscribe</button>
     </section>
 
-   <!-- Archives Section -->
-<section id="archives" class="sub-page">
-    <div class="search-bar">
-        <input type="text" placeholder="Search...">
-        <button>Search</button>
-    </div>
+    <!-- Archives Section -->
+    <section id="archives" class="sub-page">
+        <div class="search-bar">
+            <!-- Add your search engine code here -->
+            <input type="text" placeholder="Search...">
+            <button>Search</button>
+        </div>
 
-    <div class="folder">
-        <a href="#audio">Audio</a>
-    </div>
-    <div class="folder">
-        <a href="#images">Images</a>
-    </div>
-</section>
-
+        <div class="folder">
+            <a href="#audio">Audio</a>
+        </div>
+        <div class="folder">
+            <a href="#images">Images</a>
+        </div>
+        <!-- Add more folders as needed -->
+    </section>
 
     <!-- JavaScript goes here -->
     <script src="scripts/script.js"></script>
     <script src="scripts/modal.js"></script>
-    <script src="scripts/player.js"></script>
 </body>
 </html>
