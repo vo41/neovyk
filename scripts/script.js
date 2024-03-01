@@ -1,15 +1,13 @@
 // Function to show/hide the selected sub-page
 function toggleSubPage(pageId) {
-    // Toggle the visibility of the selected sub-page
-    var selectedPage = document.getElementById(pageId);
-    if (selectedPage) {
-        selectedPage.classList.toggle('active');
-    }
-
-    // Hide all other sub-pages
+    // Hide all sub-pages
     var subPages = document.querySelectorAll('.sub-page');
     subPages.forEach(function (page) {
-        if (page.id !== pageId) {
+        if (page.id === pageId) {
+            // Toggle the visibility of the selected sub-page
+            page.classList.toggle('active');
+        } else {
+            // Explicitly hide other sub-pages
             page.classList.remove('active');
         }
     });
