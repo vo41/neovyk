@@ -3,48 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Example Computer Explorer</title>
+    <title>NEOVYK's Explorer</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Banner with picture and short info -->
     <header>
-        <h1>Example Computer Explorer</h1>
+        <img src="https://f4.bcbits.com/img/0029551240_20.jpg" alt="NEOVYK's Picture">
+        <p>Electronic Artist & Record Producer</p>
     </header>
-    <main id="explorer">
-        <!-- Your explorer content goes here -->
-    </main>
+
+    <!-- Main Menu -->
+    <nav>
+        <ul>
+            <li><a href="#music">Music</a></li>
+            <li><a href="#search">Search</a></li>
+            <li><a href="#socials">Internet</a></li>
+            <li><a href="#player">Free WAV Player</a></li>
+            <li><a href="#notepad">Notepad</a></li>
+            <li><a href="#archive">Archive</a></li>
+        </ul>
+    </nav>
+
+    <!-- Content Sections -->
+    <section id="music">
+        <!-- Add your music files and visualizer here -->
+        <!-- Example: -->
+        <audio controls>
+            <source src="your_music_file.wav" type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </section>
+
+    <section id="search">
+        <!-- Add your search engine code here -->
+        <!-- Example: -->
+        <input type="text" placeholder="Search...">
+        <button>Search</button>
+    </section>
+
+    <section id="socials">
+        <!-- Add your links to socials here -->
+        <!-- Example: -->
+        <a href="your_social_link">Instagram</a>
+        <a href="your_social_link">Twitter</a>
+    </section>
+
+    <section id="player">
+        <!-- Free WAV Player with visualizer and shuffle button -->
+        <!-- Example: -->
+        <audio controls>
+            <source src="your_music_file.wav" type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+        <button onclick="shuffleSongs()">Shuffle</button>
+    </section>
+
+    <section id="notepad">
+        <!-- Add your notepad or newsletter subscription form here -->
+        <!-- Example: -->
+        <textarea placeholder="Leave a message..."></textarea>
+        <button>Subscribe</button>
+    </section>
+
+    <section id="archive">
+        <!-- Folders in the archive -->
+        <div class="folder">
+            <a href="#wallpapers">Wallpapers</a>
+        </div>
+        <!-- Add more folders as needed -->
+    </section>
+
+    <script>
+        // JavaScript functions go here
+        function shuffleSongs() {
+            // Add logic for shuffling songs
+        }
+    </script>
 </body>
 </html>
-body {
-    font-family: 'Courier New', monospace;
-    background-color: #000;
-    color: #00FF00;
-}
-
-header {
-    background-color: #808080;
-    padding: 10px;
-    text-align: center;
-}
-
-#explorer {
-    padding: 20px;
-}
-<div class="folder">
-    <a href="#">Folder 1</a>
-</div>
-<div class="folder">
-    <a href="#">Folder 2</a>
-</div>
-<div class="file">
-    <a href="#">File 1.txt</a>
-</div>
-// Example script to handle clicks on folders
-const folders = document.querySelectorAll('.folder');
-
-folders.forEach(folder => {
-    folder.addEventListener('click', () => {
-        alert(`Opening ${folder.textContent}`);
-        // Add more functionality here
-    });
-});
