@@ -40,9 +40,6 @@
         nav ul {
             list-style-type: none;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
 
         nav li {
@@ -60,20 +57,12 @@
             display: none; /* Hide by default */
         }
 
-        #search {
-            margin-bottom: 10px;
+        .sub-page {
+            display: none; /* Hide by default */
         }
     </style>
 </head>
 <body>
-    <!-- Search Section -->
-    <section id="search">
-        <!-- Add your search engine code here -->
-        <!-- Example: -->
-        <input type="text" placeholder="Search...">
-        <button>Search</button>
-    </section>
-
     <!-- Banner with photo and info on the right -->
     <header>
         <img src="https://i1.sndcdn.com/avatars-ltbL73iPvlWYw2Km-1r59Wg-t500x500.jpg" alt="NEOVYK's Picture">
@@ -81,6 +70,14 @@
             <p>Electronic Artist & Record Producer</p>
         </div>
     </header>
+
+    <!-- Search -->
+    <section id="search" class="sub-page">
+        <!-- Add your search engine code here -->
+        <!-- Example: -->
+        <input type="text" placeholder="Search...">
+        <button>Search</button>
+    </section>
 
     <!-- Main Menu with Windows 95 style -->
     <nav>
@@ -95,32 +92,23 @@
     </nav>
 
     <!-- Content Sections -->
-    <section id="music">
-        <!-- Add your music files and visualizer here -->
-        <!-- Example: -->
-        <audio controls>
-            <source src="your_music_file.mp3" type="audio/mp3">
-            Your browser does not support the audio element.
-        </audio>
-        <p>Explore NEOVYK's music on:</p>
-        <ul>
-            <li><a href="https://neovyk.bandcamp.com">Bandcamp</a></li>
-            <li><a href="https://soundcloud.com/neovyk">Soundcloud</a></li>
-            <li><a href="https://open.spotify.com/artist/7hafaBs1ZK7G2EIi71wRX2">Spotify</a></li>
-            <li><a href="https://music.apple.com/us/artist/neovyk/1653539347">Apple Music</a></li>
-        </ul>
+    <section id="music" class="sub-page">
+        <!-- Add your music links here -->
+        <p>Check out my music on:</p>
+        <a href="https://neovyk.bandcamp.com">Bandcamp</a><br>
+        <a href="https://soundcloud.com/neovyk">Soundcloud</a><br>
+        <a href="https://open.spotify.com/artist/7hafaBs1ZK7G2EIi71wRX2">Spotify</a><br>
+        <a href="https://music.apple.com/us/artist/neovyk/1653539347">Apple Music</a>
     </section>
 
-    <section id="internet">
-        <!-- Content for the Internet section goes here -->
-        <p>Connect with NEOVYK on:</p>
-        <ul>
-            <li><a href="https://www.instagram.com/neovyk">Instagram</a></li>
-            <li><a href="https://www.youtube.com/@neovyk">Youtube</a></li>
-        </ul>
+    <section id="internet" class="sub-page">
+        <!-- Add your internet links here -->
+        <p>Connect with me on:</p>
+        <a href="https://www.instagram.com/neovyk">Instagram</a><br>
+        <a href="https://www.youtube.com/@neovyk">Youtube</a>
     </section>
 
-    <section id="player">
+    <section id="player" class="sub-page">
         <!-- Add your media player code here -->
         <audio controls>
             <source src="your_music_file.mp3" type="audio/mp3">
@@ -129,14 +117,14 @@
         <button onclick="shuffleSongs()">Shuffle</button>
     </section>
 
-    <section id="notepad">
+    <section id="notepad" class="sub-page">
         <!-- Add your notepad or newsletter subscription form here -->
         <!-- Example: -->
         <textarea placeholder="Leave a message..."></textarea>
         <button>Subscribe</button>
     </section>
 
-    <section id="archive">
+    <section id="archive" class="sub-page">
         <!-- Folders in the archive -->
         <div class="folder">
             <a href="#wallpapers">Wallpapers</a>
@@ -153,4 +141,12 @@
         // Function to show the selected sub-page
         function showSubPage(pageId) {
             // Hide all sub-pages
-            var subPages = document.querySelectorAll('section');
+            var subPages = document.querySelectorAll('.sub-page');
+            subPages.forEach(function(page) {
+                page.style.display = 'none';
+            });
+
+            // Show the selected sub-page
+            var selectedPage = document.getElementById(pageId);
+            if (selectedPage) {
+                selectedPage.style.display = '
