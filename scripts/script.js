@@ -27,9 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
             showSubPage(pageId);
         });
     });
-});
 
-// script.js
 document.addEventListener('DOMContentLoaded', function () {
     var menuLinks = document.querySelectorAll('nav a');
     menuLinks.forEach(function (link) {
@@ -46,3 +44,4 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
