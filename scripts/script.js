@@ -33,3 +33,12 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+function openPlayerModal() {
+    var playerModal = document.getElementById('playerModal');
+    if (playerModal) {
+        playerModal.style.display = 'block';
+        loadPlayerContent();  // Assuming you have a function to load content in your modal
+    }
+}
+
