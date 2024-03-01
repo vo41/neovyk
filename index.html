@@ -10,33 +10,75 @@
             background-color: black;
             color: white;
             text-align: center;
+            font-family: 'Courier New', monospace;
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        header img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+        }
+
+        header p {
+            margin-top: 10px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #008080; /* Teal, similar to Windows 95 */
+            padding: 10px;
+            margin-bottom: 20px;
         }
 
         nav ul {
             list-style-type: none;
             padding: 0;
+            display: flex;
         }
 
         nav li {
-            display: inline-block;
-            margin: 10px;
+            margin: 0 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        #player-subpage {
+            display: none; /* Hide by default */
         }
     </style>
 </head>
 <body>
-    <!-- Banner with picture and short info -->
+    <!-- Banner with photo and info on the right -->
     <header>
-        <img src="https://i1.sndcdn.com/avatars-ltbL73iPvlWYw2Km-1r59Wg-t500x500.jpg" alt="NEOVYK's Picture" style="width: 200px; height: 200px; border-radius: 50%;">
-        <p>Electronic Artist & Record Producer</p>
+        <img src="https://i1.sndcdn.com/avatars-ltbL73iPvlWYw2Km-1r59Wg-t500x500.jpg" alt="NEOVYK's Picture">
+        <div>
+            <p>Electronic Artist & Record Producer</p>
+        </div>
     </header>
 
-    <!-- Main Menu -->
+    <!-- Main Menu with Windows 95 style -->
     <nav>
         <ul>
             <li><a href="#music">Music</a></li>
             <li><a href="#search">Search</a></li>
-            <li><a href="#socials">Internet</a></li>
-            <li><a href="#player">Free WAV Player</a></li>
+            <li><a href="#internet">Internet</a></li>
+            <li><a href="#player">Free MP3 Player</a></li>
             <li><a href="#notepad">Notepad</a></li>
             <li><a href="#archive">Archive</a></li>
         </ul>
@@ -47,7 +89,7 @@
         <!-- Add your music files and visualizer here -->
         <!-- Example: -->
         <audio controls>
-            <source src="your_music_file.wav" type="audio/wav">
+            <source src="your_music_file.mp3" type="audio/mp3">
             Your browser does not support the audio element.
         </audio>
     </section>
@@ -59,18 +101,22 @@
         <button>Search</button>
     </section>
 
-    <section id="socials">
-        <!-- Add your links to socials here -->
-        <!-- Example: -->
-        <a href="your_social_link">Instagram</a>
-        <a href="your_social_link">Twitter</a>
+    <section id="internet">
+        <!-- Content for the Internet section goes here -->
+        <p>Placeholder for Internet content</p>
     </section>
 
     <section id="player">
-        <!-- Free WAV Player with visualizer and shuffle button -->
-        <!-- Example: -->
+        <!-- Link to the sub-page for Free MP3 Player -->
+        <a href="#player-subpage">Free MP3 Player</a>
+    </section>
+
+    <!-- Placeholder for the sub-page with the media player -->
+    <section id="player-subpage">
+        <h2>Free MP3 Player Sub-Page</h2>
+        <!-- Add your media player code here -->
         <audio controls>
-            <source src="your_music_file.wav" type="audio/wav">
+            <source src="your_music_file.mp3" type="audio/mp3">
             Your browser does not support the audio element.
         </audio>
         <button onclick="shuffleSongs()">Shuffle</button>
