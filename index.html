@@ -143,85 +143,92 @@
     
     <script>
     // JavaScript functions go here
-    var audio = document.getElementById("audioPlayer");
-    var canvas = document.getElementById("visualizer");
-    var ctx = canvas.getContext("2d");
-    var isPlaying = false;
-    var isShuffle = false;
-    var currentSongIndex = 0;
+var audio = document.getElementById("audioPlayer");
+var canvas = document.getElementById("visualizer");
+var ctx = canvas.getContext("2d");
+var isPlaying = false;
+var isShuffle = false;
+var currentSongIndex = 0;
 
-    var songs = [
-        "MP3/01. Arrival.mp3",
-        "MP3/02. Worlds Away.mp3",
-        "MP3/03. Explore.mp3",
-        "MP3/04. Zero Gravity.mp3",
-        "MP3/05. Exo.mp3",
-        "MP3/06. Delta.mp3",
-        "MP3/07. Oracle.mp3",
-        "MP3/08. Aeon.mp3",
-        "MP3/09. Pathfinder.mp3",
-        "MP3/10. Wandering.mp3"
-        // Add more songs as needed
-    ];
+var audioContext;
+var analyser;
 
-    // Function to toggle play/pause
+var songs = [
+    "MP3/01. Arrival.mp3",
+    "MP3/02. Worlds Away.mp3",
+    "MP3/03. Explore.mp3",
+    "MP3/04. Zero Gravity.mp3",
+    "MP3/05. Exo.mp3",
+    "MP3/06. Delta.mp3",
+    "MP3/07. Oracle.mp3",
+    "MP3/08. Aeon.mp3",
+    "MP3/09. Pathfinder.mp3",
+    "MP3/10. Wandering.mp3"
+    // Add more songs as needed
+];
+
+// Function to toggle play/pause
 function togglePlayPause() {
     if (isPlaying) {
         audio.pause();
         isPlaying = false;
         document.getElementById("playPauseBtn").innerText = "Play";
     } else {
-        audio.play();
-        visualize();
-        isPlaying = true;
-        document.getElementById("playPauseBtn").innerText = "Pause";
+        if (!audioContext) {
+            setupAudioContext();
+        }
+        playSong();
     }
 }
 
-    // Function to toggle shuffle
-    function toggleShuffle() {
-        isShuffle = !isShuffle;
-        document.getElementById("playPauseBtn").innerText = "Play";
-        playSong();
-    }
+// Function to toggle shuffle
+function toggleShuffle() {
+    isShuffle = !isShuffle;
+    document.getElementById("playPauseBtn").innerText = "Play";
+    playSong();
+}
 
-    // Function to play the previous song
-    function playPrevious() {
-        currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
-        playSong();
-    }
+// Function to play the previous song
+function playPrevious() {
+    currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+    playSong();
+}
 
-    // Function to play the next song
-    function playNext() {
-        currentSongIndex = (currentSongIndex + 1) % songs.length;
-        playSong();
-    }
+// Function to play the next song
+function playNext() {
+    currentSongIndex = (currentSongIndex + 1) % songs.length;
+    playSong();
+}
 
-    // Function to play the current song
-    function playSong() {
-        audio.src = songs[currentSongIndex];
-        if (isPlaying) {
-            audio.play();
-            visualize();
-        }
-        document.getElementById("playPauseBtn").innerText = isPlaying ? "Pause" : "Play";
+// Function to play the current song
+function playSong() {
+    audio.src = songs[currentSongIndex];
+    if (isPlaying) {
+        audio.pause();
     }
+    audio.play();
+    visualize();
+    isPlaying = true;
+    document.getElementById("playPauseBtn").innerText = "Pause";
+}
 
-    // Function to visualize audio
-function visualize() {
-    var audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    var analyser = audioContext.createAnalyser();
+// Function to setup audio context and analyser
+function setupAudioContext() {
+    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    analyser = audioContext.createAnalyser();
     var source = audioContext.createMediaElementSource(audio);
 
     source.connect(analyser);
     analyser.connect(audioContext.destination);
 
     analyser.fftSize = 256;
+    visualize();
+}
+
+// Function to visualize audio with more complex shapes
+function visualize() {
     var bufferLength = analyser.frequencyBinCount;
     var dataArray = new Uint8Array(bufferLength);
-
-    var canvas = document.getElementById("visualizer");
-    var ctx = canvas.getContext("2d");
 
     function draw() {
         var WIDTH = canvas.width;
@@ -229,18 +236,17 @@ function visualize() {
 
         analyser.getByteFrequencyData(dataArray);
 
-        ctx.fillStyle = "rgb(0, 0, 0)";
-        ctx.fillRect(0, 0, WIDTH, HEIGHT);
+        ctx.clearRect(0, 0, WIDTH, HEIGHT);
 
         var barWidth = (WIDTH / bufferLength) * 2.5;
         var barHeight;
         var x = 0;
 
         for (var i = 0; i < bufferLength; i++) {
-            barHeight = dataArray[i] / 2;
+            barHeight = dataArray[i];
 
-            ctx.fillStyle = "rgb(" + (barHeight + 100) + ",50,50)";
-            ctx.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
+            ctx.fillStyle = "rgb(" + barHeight + ", 50, 50)";
+            ctx.fillRect(x, HEIGHT - barHeight / 2, barWidth, barHeight / 2);
 
             x += barWidth + 1;
         }
@@ -250,6 +256,7 @@ function visualize() {
 
     draw();
 }
+
 
     // Function to show the selected sub-page
     function showSubPage(pageId) {
