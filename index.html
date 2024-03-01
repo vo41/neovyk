@@ -124,11 +124,10 @@
         Your browser does not support the audio element.
     </audio>
     <div>
-        <!-- Replacing text buttons with music icons -->
-        <button id="playPauseBtn" onclick="togglePlayPause()" style="background: none; border: none; cursor: pointer;"><img src="play-icon.png" alt="Play"></button>
-        <button onclick="toggleShuffle()" style="background: none; border: none; cursor: pointer;"><img src="shuffle-icon.png" alt="Shuffle"></button>
-        <button onclick="playPrevious()" style="background: none; border: none; cursor: pointer;"><img src="previous-icon.png" alt="Previous"></button>
-        <button onclick="playNext()" style="background: none; border: none; cursor: pointer;"><img src="next-icon.png" alt="Next"></button>
+        <button id="playPauseBtn" onclick="togglePlayPause()"><i class="fa fa-play"></i></button>
+        <button onclick="toggleShuffle()"><i class="fa fa-random"></i></button>
+        <button onclick="playPrevious()"><i class="fa fa-step-backward"></i></button>
+        <button onclick="playNext()"><i class="fa fa-step-forward"></i></button>
     </div>
 
 </section>
