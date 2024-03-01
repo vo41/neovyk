@@ -1,3 +1,32 @@
+/* Add this at the beginning to style the header */
+header {
+    background-color: teal;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+}
+
+/* Style for the image inside the teal box */
+img {
+    width: 40px; /* Adjust this value as needed */
+    height: 40px; /* Adjust this value as needed */
+    border: 2px solid white; /* Add a border to the image */
+    border-radius: 4px; /* Add some border radius for a smoother look */
+    margin-right: 10px; /* Add some space between the image and the description */
+}
+
+/* Style for the description on the right side */
+.description {
+    color: white;
+    max-width: 200px; /* Adjust this value as needed */
+}
+
 body {
     background-color: #1a1a1a;
     color: white;
