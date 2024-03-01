@@ -19,7 +19,7 @@ function showSubPage(pageId) {
 
 // Function to handle menu clicks
 document.addEventListener('DOMContentLoaded', function () {
-    var menuLinks = document.querySelectorAll('nav a');
+    var menuLinks = document.querySelectorAll('.windows95 a');
     menuLinks.forEach(function (link) {
         link.addEventListener('click', function (event) {
             event.preventDefault();
@@ -27,21 +27,4 @@ document.addEventListener('DOMContentLoaded', function () {
             showSubPage(pageId);
         });
     });
-
-document.addEventListener('DOMContentLoaded', function () {
-    var menuLinks = document.querySelectorAll('nav a');
-    menuLinks.forEach(function (link) {
-        link.addEventListener('click', function (event) {
-            event.preventDefault();
-            var pageId = link.getAttribute('href').substring(1);
-            
-            // Check if the clicked link is for the MP3 Player
-            if (pageId === 'player') {
-                loadPlayerContent();
-            } else {
-                showSubPage(pageId);
-            }
-        });
-    });
 });
-
