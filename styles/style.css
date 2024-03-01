@@ -25,6 +25,7 @@ img {
 .description {
     color: white;
     max-width: 200px; /* Adjust this value as needed */
+    display: block; /* Keep display block for the description */
 }
 
 body {
@@ -82,16 +83,16 @@ body {
     display: block;
 }
 
-/* Updated styles to remove description */
+/* Updated styles for placing the image in the left top corner and re-adding the description */
 .banner {
     display: flex;
-    align-items: center;
-    justify-content: space-around;
+    align-items: flex-start; /* Align to the top */
+    justify-content: flex-start; /* Align to the left */
 }
 
 .image-box {
-    width: 200px; /* Same width as the menu bar */
-    height: 40px; /* Same height as the menu bar */
+    width: 60px; /* Slightly smaller size */
+    height: 60px; /* Slightly smaller size */
     overflow: hidden;
     border: 2px solid #008080;
 }
@@ -110,10 +111,10 @@ body {
     text-align: center;
 }
 
-/* Remove the description class styles */
-.description {
+/* Remove the conflicting .description styles */
+/* .description {
     display: none;
-}
+} */
 
 /* Style for the search bar */
 .search-bar {
