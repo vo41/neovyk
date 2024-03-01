@@ -1,7 +1,9 @@
-// scripts/mp3player.js
-function closeMp3Player() {
-    var playerContainer = document.querySelector('.mp3-player-container');
-    if (playerContainer) {
-        playerContainer.style.display = 'none';
-    }
+// script.js or mp3player.js
+function loadPlayerContent() {
+    fetch('mp3player.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('playerContent').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading player content:', error));
 }
