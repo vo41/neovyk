@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+// Function to open the MP3 Player modal
 function openPlayerModal() {
     var playerModal = document.getElementById('playerModal');
     if (playerModal) {
