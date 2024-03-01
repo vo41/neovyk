@@ -42,3 +42,25 @@ function openPlayerModal() {
     }
 }
 
+// Function to load content into the MP3 Player modal
+function loadPlayerContent() {
+    var playerContent = document.getElementById('playerContent');
+    
+    // Clear any existing content
+    playerContent.innerHTML = '';
+
+    // Create an audio element for each MP3 file
+    var audioFiles = [
+        'audio/01. Arrival.mp3',
+        'audio/02. Worlds Away.mp3',
+        // Add paths for all your songs
+    ];
+
+    audioFiles.forEach(function (audioPath) {
+        var audioElement = document.createElement('audio');
+        audioElement.src = audioPath;
+        audioElement.controls = true;
+
+        playerContent.appendChild(audioElement);
+    });
+}
