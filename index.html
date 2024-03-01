@@ -27,13 +27,11 @@
             border-radius: 50%;
         }
 
-        header p {
+        header div {
             margin-top: 10px;
         }
 
         nav {
-            display: flex;
-            justify-content: center;
             background-color: #008080; /* Teal, similar to Windows 95 */
             padding: 10px;
             margin-bottom: 20px;
@@ -42,11 +40,10 @@
         nav ul {
             list-style-type: none;
             padding: 0;
-            display: flex;
         }
 
         nav li {
-            margin: 0 10px;
+            margin: 10px 0;
         }
 
         nav a {
@@ -58,20 +55,12 @@
             margin-bottom: 30px;
         }
 
-        #player-subpage {
+        .sub-page {
             display: none; /* Hide by default */
         }
     </style>
 </head>
 <body>
-    <!-- Banner with photo and info on the right -->
-    <header>
-        <img src="https://i1.sndcdn.com/avatars-ltbL73iPvlWYw2Km-1r59Wg-t500x500.jpg" alt="NEOVYK's Picture">
-        <div>
-            <p>Electronic Artist & Record Producer</p>
-        </div>
-    </header>
-
     <!-- Main Menu with Windows 95 style -->
     <nav>
         <ul>
@@ -85,35 +74,28 @@
     </nav>
 
     <!-- Content Sections -->
-    <section id="music">
+    <section id="music" class="sub-page">
         <!-- Add your music files and visualizer here -->
         <!-- Example: -->
         <audio controls>
-            <source src="01. Arrival.mp3" type="audio/mp3">
+            <source src="your_music_file.mp3" type="audio/mp3">
             Your browser does not support the audio element.
         </audio>
     </section>
 
-    <section id="search">
+    <section id="search" class="sub-page">
         <!-- Add your search engine code here -->
         <!-- Example: -->
         <input type="text" placeholder="Search...">
         <button>Search</button>
     </section>
 
-    <section id="internet">
+    <section id="internet" class="sub-page">
         <!-- Content for the Internet section goes here -->
         <p>Placeholder for Internet content</p>
     </section>
 
-    <section id="player">
-        <!-- Link to the sub-page for Free MP3 Player -->
-        <a href="#player-subpage">Free MP3 Player</a>
-    </section>
-
-    <!-- Placeholder for the sub-page with the media player -->
-    <section id="player-subpage">
-        <h2>Free MP3 Player Sub-Page</h2>
+    <section id="player" class="sub-page">
         <!-- Add your media player code here -->
         <audio controls>
             <source src="your_music_file.mp3" type="audio/mp3">
@@ -122,26 +104,11 @@
         <button onclick="shuffleSongs()">Shuffle</button>
     </section>
 
-    <section id="notepad">
+    <section id="notepad" class="sub-page">
         <!-- Add your notepad or newsletter subscription form here -->
         <!-- Example: -->
         <textarea placeholder="Leave a message..."></textarea>
         <button>Subscribe</button>
     </section>
 
-    <section id="archive">
-        <!-- Folders in the archive -->
-        <div class="folder">
-            <a href="#wallpapers">Wallpapers</a>
-        </div>
-        <!-- Add more folders as needed -->
-    </section>
-
-    <script>
-        // JavaScript functions go here
-        function shuffleSongs() {
-            // Add logic for shuffling songs
-        }
-    </script>
-</body>
-</html>
+    <section
