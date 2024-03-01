@@ -1,30 +1,20 @@
-// Function to show the selected sub-page
-function showSubPage(pageId) {
-    // Hide all sub-pages
-    var subPages = document.querySelectorAll('.sub-page');
-    subPages.forEach(function (page) {
-        page.classList.remove('active');
-    });
-
-    // Show the selected sub-page
-    var selectedPage = document.getElementById(pageId);
-    if (selectedPage) {
-        selectedPage.classList.add('active');
-    }
-
-    // Ensure the search bar remains visible only for the Archives section
-    var searchBar = document.querySelector('.search-bar');
-    searchBar.style.display = pageId === 'archives' ? 'block' : 'none';
-}
-
-// Function to handle menu clicks
 document.addEventListener('DOMContentLoaded', function () {
     var menuLinks = document.querySelectorAll('nav a');
+    
+    // Function to toggle the visibility of a sub-page
+    function toggleSubPage(pageId) {
+        var selectedPage = document.getElementById(pageId);
+        if (selectedPage) {
+            selectedPage.classList.toggle('active');
+        }
+    }
+
+    // Function to handle menu clicks
     menuLinks.forEach(function (link) {
         link.addEventListener('click', function (event) {
             event.preventDefault();
             var pageId = link.getAttribute('href').substring(1);
-            showSubPage(pageId);
+            toggleSubPage(pageId);
         });
     });
 });
