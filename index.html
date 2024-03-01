@@ -79,17 +79,32 @@
     </div>
     </section>
 
-    <!-- MP3 Player -->
-    <section id="player" class="sub-page">
-    <div class="window-container">
-        <div class="window-header">
-            <button class="close-button" onclick="closeWindow('player')">X</button>
+    <!-- MP3 Player Section -->
+    <section id="player" class="sub-page window-container">
+    <div class="window-header">
+        <span>MP3 Player</span>
+        <button class="close-button" onclick="closeWindow('player')">X</button>
+    </div>
+    <div class="mp3-player">
+        <div class="controls">
+            <button id="prevBtn">Previous</button>
+            <button id="playPauseBtn">Play</button>
+            <button id="nextBtn">Next</button>
         </div>
-        <div class="window-content">
-            <!-- Add your MP3 player content here -->
+        <div class="visualizer"></div>
+        <div class="explorer">
+            <!-- You can dynamically load audio files from your "audio" folder here -->
+            <div class="folder">
+                <a href="audio/01. Arrival.mp3">01. Arrival</a>
+            </div>
+            <div class="folder">
+                <a href="audio/02. Worlds Away.mp3">02. Worlds Away</a>
+            </div>
+            <!-- Add more divs for each audio file in the "audio" folder -->
         </div>
     </div>
     </section>
+
 
     <!-- JavaScript goes here -->
     <script src="scripts/script.js"></script>
