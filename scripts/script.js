@@ -1,6 +1,5 @@
-// Function to show or hide the selected sub-page
+// Function to toggle the visibility of the selected sub-page
 function toggleSubPage(pageId) {
-    // Toggle the visibility of the selected sub-page
     var selectedPage = document.getElementById(pageId);
     if (selectedPage) {
         selectedPage.classList.toggle('active');
@@ -8,7 +7,7 @@ function toggleSubPage(pageId) {
 
     // Ensure the search bar remains visible only for the Archives section
     var searchBar = document.querySelector('.search-bar');
-    searchBar.style.display = pageId === 'archives' ? 'block' : 'none';
+    searchBar.style.display = pageId === 'archives' && selectedPage.classList.contains('active') ? 'block' : 'none';
 }
 
 // Function to handle menu clicks
