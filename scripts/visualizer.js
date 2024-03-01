@@ -41,3 +41,11 @@ function previous() {
 function next() {
   // Add logic to play the next track
 }
+
+  function loadPlayerContent() {
+  // Assuming you have an array of song filenames
+  const songList = ['01. Arrival.mp3', '02. Worlds Away.mp3'];
+  const currentSongIndex = 0; // Set the initial song index
+
+  audio = loadSound(`path/to/your/audio/${songList[currentSongIndex]}`);
+  document.querySelector('.album-art img').src = `path/to/your/images/${songList[currentSongIndex].replace('.mp3', '.jpg')}`;
