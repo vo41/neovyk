@@ -33,3 +33,27 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+// script.js
+document.addEventListener('DOMContentLoaded', function () {
+    // Call openPlayerModal when the page loads
+    openPlayerModal();
+
+    var menuLinks = document.querySelectorAll('nav a');
+    menuLinks.forEach(function (link) {
+        link.addEventListener('click', function (event) {
+            event.preventDefault();
+            var pageId = link.getAttribute('href').substring(1);
+            showSubPage(pageId);
+        });
+    });
+});
+
+function openPlayerModal() {
+    var playerModal = document.getElementById('playerModal');
+    if (playerModal) {
+        playerModal.style.display = 'block';
+        loadPlayerContent();
+    }
+}
+
