@@ -165,16 +165,18 @@
     ];
 
     // Function to toggle play/pause
-    function togglePlayPause() {
-        if (isPlaying) {
-            audio.pause();
-        } else {
-            audio.play();
-            visualize();
-        }
-        isPlaying = !isPlaying;
-        document.getElementById("playPauseBtn").innerText = isPlaying ? "Pause" : "Play";
+function togglePlayPause() {
+    if (isPlaying) {
+        audio.pause();
+        isPlaying = false;
+        document.getElementById("playPauseBtn").innerText = "Play";
+    } else {
+        audio.play();
+        visualize();
+        isPlaying = true;
+        document.getElementById("playPauseBtn").innerText = "Pause";
     }
+}
 
     // Function to toggle shuffle
     function toggleShuffle() {
@@ -206,9 +208,48 @@
     }
 
     // Function to visualize audio
-    function visualize() {
-        // ... (same as before)
+function visualize() {
+    var audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    var analyser = audioContext.createAnalyser();
+    var source = audioContext.createMediaElementSource(audio);
+
+    source.connect(analyser);
+    analyser.connect(audioContext.destination);
+
+    analyser.fftSize = 256;
+    var bufferLength = analyser.frequencyBinCount;
+    var dataArray = new Uint8Array(bufferLength);
+
+    var canvas = document.getElementById("visualizer");
+    var ctx = canvas.getContext("2d");
+
+    function draw() {
+        var WIDTH = canvas.width;
+        var HEIGHT = canvas.height;
+
+        analyser.getByteFrequencyData(dataArray);
+
+        ctx.fillStyle = "rgb(0, 0, 0)";
+        ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+        var barWidth = (WIDTH / bufferLength) * 2.5;
+        var barHeight;
+        var x = 0;
+
+        for (var i = 0; i < bufferLength; i++) {
+            barHeight = dataArray[i] / 2;
+
+            ctx.fillStyle = "rgb(" + (barHeight + 100) + ",50,50)";
+            ctx.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
+
+            x += barWidth + 1;
+        }
+
+        requestAnimationFrame(draw);
     }
+
+    draw();
+}
 
     // Function to show the selected sub-page
     function showSubPage(pageId) {
