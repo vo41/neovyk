@@ -2,7 +2,7 @@ let song;
 let fft;
 
 function preload() {
-  song = loadSound('path/to/your/audio.mp3'); // Replace with the path to your audio file
+  song = loadSound('audio/01. Arrival.mp3'); // Replace with the path to your audio file
 }
 
 function setup() {
