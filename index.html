@@ -6,271 +6,7 @@
     <title>NEOVYK's Explorer</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        body {
-            background-color: black;
-            color: white;
-            text-align: center;
-            font-family: 'Courier New', monospace;
-        }
-
-        header {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            margin-bottom: 20px;
-        }
-
-        header img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-        }
-
-        header div {
-            margin-top: 10px;
-        }
-
-        nav {
-            background-color: #008080; /* Teal, similar to Windows 95 */
-            padding: 10px;
-            margin-bottom: 20px;
-        }
-
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        nav li {
-            margin: 10px 0;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        section {
-            margin-bottom: 30px;
-            display: none; /* Hide by default */
-        }
-
-        .sub-page {
-            display: none; /* Hide by default */
-        }
-
-.player {
-    height: 95vh;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.wrapper {
-    border: 1px solid transparent;
-    padding: 30px;
-    border-radius: 20px;
-    background-color: #ddd;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-}
-
-.details {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.track-art {
-    margin: 25px;
-    height: 250px;
-    width: 250px;
-    border:2px solid 	#FFFAFA;
-    background-size: cover;
-    background-position: center;
-    border-radius: 50%;
-}
-
-.now-playing {
-    font-size: 1rem;
-}
-
-.track-name {
-    font-size: 2.5rem;
-}
-
-.track-artist {
-    margin-top: 5px;
-    font-size: 1.5rem;
-}
-
-.buttons {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: 30px;
-}
-
-.active {
-    color: black;
-}
-
-.repeat-track,
-.random-track,
-.playpause-track,
-.prev-track,
-.next-track {
-    padding: 25px;
-    opacity: 0.8;
-    transition: opacity .2s;
-}
-
-.repeat-track:hover,
-.random-track:hover,
-.playpause-track:hover,
-.prev-track:hover,
-.next-track:hover {
-    opacity: 1.0;
-}
-
-.slider_container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.seek_slider, .volume_slider {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    height: 5px;
-    background: #83A9FF;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
-}
-
-.seek_slider::-webkit-slider-thumb,
-.volume_slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    width: 15px;
-    height: 15px;
-    background: white;
-    border: 3px solid #3774FF;
-    cursor: grab;
-    border-radius: 100%;
-}
-
-.seek_slider:hover,
-.volume_slider:hover {
-    opacity: 1.0;
-}
-
-.seek_slider {
-    width: 60%;
-}
-
-.volume_slider {
-    width: 30%;
-}
-
-.current-time,
-.total-duration {
-    padding: 10px;
-}
-
-i.fa-volume-down,
-i.fa-volume-up {
-    padding: 10px;
-}
-
-i,
-i.fa-play-circle,
-i.fa-pause-circle,
-i.fa-step-forward,
-i.fa-step-backward,
-p {
-    cursor: pointer;
-}
-
-.randomActive {
-    color: black;
-}
-
-.rotate {
-    animation: rotation 8s infinite linear;
-}
-
-@keyframes rotation {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(359deg);
-    }
-}
-
-.loader {
-    height: 70px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.loader .stroke {
-    background: #f1f1f1;
-    height: 150%;
-    width: 10px;
-    border-radius: 50px;
-    margin: 0 5px;
-    animation: animate 1.4s linear infinite;
-}
-
-@keyframes animate {
-    50% {
-      height: 20%;
-      background: #4286f4;
-    }
-
-    100% {
-      background: #4286f4;
-      height: 100%;
-    }
-}
-
-.stroke:nth-child(1) {
-    animation-delay: 0s;
-}
-
-.stroke:nth-child(2) {
-    animation-delay: 0.3s;
-}
-
-.stroke:nth-child(3) {
-    animation-delay: 0.6s;
-}
-
-.stroke:nth-child(4) {
-    animation-delay: 0.9s;
-}
-
-.stroke:nth-child(5) {
-    animation-delay: 0.6s;
-}
-
-.stroke:nth-child(6) {
-    animation-delay: 0.3s;
-}
-
-.stroke:nth-child(7) {
-    animation-delay: 0s;
-}
-
-        
+        /* Your existing styles here */
     </style>
 </head>
 <body>
@@ -282,25 +18,24 @@ p {
         </div>
     </header>
 
-  <!-- Search Bar Always On Top -->
-<section id="search" class="sub-page" style="display: block;">
-    <!-- Add your search engine code here -->
-    <!-- Example: -->
-    <input type="text" placeholder="Search...">
-    <button>Search</button>
-</section>
+    <!-- Search Bar Always On Top -->
+    <section id="search" class="sub-page" style="display: block;">
+        <!-- Add your search engine code here -->
+        <!-- Example: -->
+        <input type="text" placeholder="Search...">
+        <button>Search</button>
+    </section>
 
-
-<!-- Main Menu with Windows 95 style -->
-<nav>
-    <ul>
-        <li><a href="#music">Music</a></li>
-        <li><a href="#internet">Internet</a></li>
-        <li><a href="#player">Free MP3 Player</a></li>
-        <li><a href="#notepad">Notepad</a></li>
-        <li><a href="#archive">Archive</a></li>
-    </ul>
-</nav>
+    <!-- Main Menu with Windows 95 style -->
+    <nav>
+        <ul>
+            <li><a href="#music">Music</a></li>
+            <li><a href="#internet">Internet</a></li>
+            <li><a href="#player">Free MP3 Player</a></li>
+            <li><a href="#notepad">Notepad</a></li>
+            <li><a href="#archive">Archive</a></li>
+        </ul>
+    </nav>
 
 
     <!-- Content Sections -->
@@ -320,63 +55,16 @@ p {
         <a href="https://www.youtube.com/@neovyk">Youtube</a>
     </section>
 
-<!-- Free MP3 Player -->
-<section id="player" class="sub-page" style="position: absolute; top: 100px; left: 100px; display: none; background-color: #1a1a1a; border: 1px solid #666; padding: 10px; border-radius: 20px;">
-<audio id="audioPlayer" controls></audio>
-
-    <!-- Close button (X icon) -->
-    <button id="closeBtn" onclick="closePlayer()" style="position: absolute; top: 10px; right: 10px; background: none; border: none; color: #fff; font-size: 18px; cursor: pointer;">&times;</button>
-
-    <!-- Add your media player code here -->
-  <div class="player">
-        <div class="wrapper">
-            <div class="details">
-                <div class="now-playing">PLAYING x OF y</div>
-                <div class="track-art" style="margin: 25px; height: 250px; width: 250px; border:2px solid 	#FFFAFA; background-size: cover; background-position: center; border-radius: 50%;"></div>
-                <div class="track-name" style="font-size: 2.5rem;"></div>
-                <div class="track-artist" style="margin-top: 5px; font-size: 1.5rem;"></div>
-            </div>
-
-            <div class="slider_container">
-                <div class="current-time" style="padding: 10px;"></div>
-                <input type="range" min="1" max="100" value="0" class="seek_slider" onchange="seekTo()" style="-webkit-appearance: none; -moz-appearance: none; appearance: none; height: 5px; background: #83A9FF; -webkit-transition: .2s; transition: opacity .2s;">
-                <div class="total-duration" style="padding: 10px;"></div>
-            </div>
-
-            <div class="slider_container">
-                <i class="fa fa-volume-down" style="padding: 10px; cursor: pointer;"></i>
-                <input type="range" min="1" max="100" value="99" class="volume_slider" onchange="setVolume()" style="-webkit-appearance: none; -moz-appearance: none; appearance: none; height: 5px; background: #83A9FF; -webkit-transition: .2s; transition: opacity .2s;">
-                <i class="fa fa-volume-up" style="padding: 10px; cursor: pointer;"></i>
-            </div>
-
-            <div class="buttons" style="display: flex; flex-direction: row; align-items: center; margin-bottom: 30px;">
-                <div class="random-track" onclick="randomTrack()" style="padding: 25px; opacity: 0.8; transition: opacity .2s; cursor: pointer;">
-                    <i class="fas fa-random fa-2x" title="random" style="color: #fff;"></i>
-                </div>
-                <div class="prev-track" onclick="prevTrack()" style="padding: 25px; opacity: 0.8; transition: opacity .2s; cursor: pointer;">
-                    <i class="fa fa-step-backward fa-2x" style="color: #fff;"></i>
-                </div>
-                <div class="playpause-track" onclick="playpauseTrack()" style="padding: 25px; opacity: 0.8; transition: opacity .2s; cursor: pointer;">
-                    <i class="fa fa-play-circle fa-5x" style="color: #fff;"></i>
-                </div>
-                <div class="next-track" onclick="nextTrack()" style="padding: 25px; opacity: 0.8; transition: opacity .2s; cursor: pointer;">
-                    <i class="fa fa-step-forward fa-2x" style="color: #fff;"></i>
-                </div>
-                <div class="repeat-track" onclick="repeatTrack()" style="padding: 25px; opacity: 0.8; transition: opacity .2s; cursor: pointer;">
-                    <i class="fa fa-repeat fa-2x" title="repeat" style="color: #fff;"></i>
-                </div>
-            </div>
-
-            <div id="wave" style="height: 70px; display: flex; justify-content: center; align-items: center;">
-                <span class="stroke" style="background: #f1f1f1; height: 150%; width: 10px; border-radius: 50px; margin: 0 5px; animation: animate 1.4s linear infinite;"></span>
-                <span class="stroke" style="background: #f1f1f1; height: 150%; width: 10px; border-radius: 50px; margin: 0 5px; animation: animate 1.4s linear infinite;"></span>
-                <span class="stroke" style="background: #f1f1f1; height: 150%; width: 10px; border-radius: 50px; margin: 0 5px; animation: animate 1.4s linear infinite;"></span>
-                <span class="stroke" style="background: #f1f1f1; height: 150%; width: 10px; border-radius: 50px; margin: 0 5px; animation: animate 1.4s linear infinite;"></span>
-                <span class="stroke" style="background: #f1f1f1; height: 150%; width: 10px; border-radius: 50px; margin: 0 5px; animation: animate 1.4s linear infinite;"></span>
-                <span class="stroke" style="background: #f1f1f1; height: 150%; width: 10px; border-radius: 50px; margin: 0 5px; animation: animate 1.4s linear infinite;"></span>
-                <span class="stroke" style="background: #f1f1f1; height: 150%; width: 10px; border-radius: 50px; margin: 0 5px; animation: animate 1.4s linear infinite;"></span>
-            </div>  
-      </div>
+ <!-- Free MP3 Player Section -->
+    <section id="player" class="sub-page" style="position: absolute; top: 100px; left: 100px; display: none; background-color: #1a1a1a; border: 1px solid #666; padding: 10px; border-radius: 20px;">
+        <audio id="audioPlayer" controls></audio>
+        <!-- Close button (X icon) -->
+        <button id="closeBtn" onclick="closePlayer()" style="position: absolute; top: 10px; right: 10px; background: none; border: none; color: #fff; font-size: 18px; cursor: pointer;">&times;</button>
+        <!-- Add your media player code here -->
+        <div class="player">
+            <!-- ... (Rest of the player content) ... -->
+        </div> <!-- Add this closing tag -->
+    </section>
 
 </section>
 
