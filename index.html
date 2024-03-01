@@ -109,13 +109,84 @@
     </section>
 
     <section id="player" class="sub-page">
-        <!-- Add your media player code here -->
-        <audio controls>
-            <source src="your_music_file.mp3" type="audio/mp3">
-            Your browser does not support the audio element.
-        </audio>
+    <!-- Add your media player code here -->
+    <div>
+        <canvas id="visualizer" width="600" height="100"></canvas>
+    </div>
+    <audio id="audioPlayer" controls>
+        <!-- Example: Replace "your_music_file.mp3" with the actual path to your music file -->
+        <source src="07. Oracle.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+    <div>
+        <button onclick="togglePlayPause()">Play/Pause</button>
         <button onclick="shuffleSongs()">Shuffle</button>
-    </section>
+    </div>
+
+    <script>
+        // JavaScript functions go here
+        var audio = document.getElementById("audioPlayer");
+        var canvas = document.getElementById("visualizer");
+        var ctx = canvas.getContext("2d");
+        var isPlaying = false;
+
+        // Function to toggle play/pause
+        function togglePlayPause() {
+            if (isPlaying) {
+                audio.pause();
+            } else {
+                audio.play();
+                visualize();
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // Function to shuffle songs
+        function shuffleSongs() {
+            // Add logic for shuffling songs
+        }
+
+        // Function to visualize audio
+        function visualize() {
+            var audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            var analyser = audioContext.createAnalyser();
+            var source = audioContext.createMediaElementSource(audio);
+            source.connect(analyser);
+            analyser.connect(audioContext.destination);
+
+            analyser.fftSize = 256;
+            var bufferLength = analyser.frequencyBinCount;
+            var dataArray = new Uint8Array(bufferLength);
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            function draw() {
+                drawVisual = requestAnimationFrame(draw);
+
+                analyser.getByteFrequencyData(dataArray);
+
+                ctx.fillStyle = 'rgb(0, 0, 0)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                var barWidth = (canvas.width / bufferLength) * 2.5;
+                var barHeight;
+                var x = 0;
+
+                for (var i = 0; i < bufferLength; i++) {
+                    barHeight = dataArray[i];
+
+                    ctx.fillStyle = 'rgb(' + (barHeight + 100) + ',50,50)';
+                    ctx.fillRect(x, canvas.height - barHeight / 2, barWidth, barHeight / 2);
+
+                    x += barWidth + 1;
+                }
+            }
+
+            draw();
+        }
+    </script>
+</section>
+
 
     <section id="notepad" class="sub-page">
         <!-- Add your notepad or newsletter subscription form here -->
