@@ -53,7 +53,33 @@ body {
     display: block;
 }
 
-/* Add any additional styling you need */
+/* Add any styling */
+.banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.image-box {
+    width: 200px; /* Adjust as needed */
+    height: 200px; /* Adjust as needed */
+    overflow: hidden; /* Ensure the image doesn't overflow */
+    border: 2px solid #008080; /* Teal border, adjust color as needed */
+}
+
+.image-box img {
+    width: 100%; /* Make the image fill the container */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.info-box {
+    width: 200px; /* Same width as the image box */
+    padding: 10px;
+    box-sizing: border-box; /* Include padding in the total width */
+    background-color: #008080; /* Teal background, adjust color as needed */
+    color: white;
+    text-align: center;
+}
 
 /* Style for the search bar */
 .search-bar {
