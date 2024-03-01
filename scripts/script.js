@@ -7,8 +7,6 @@ const subPages = document.querySelectorAll('.sub-page');
 // Add click event listeners to each menu item
 menuItems.forEach((menuItem, index) => {
     menuItem.addEventListener('click', (event) => {
-        event.preventDefault(); // Prevent the default link behavior
-
         // Remove 'active' class from all sub-pages
         subPages.forEach((subPage) => {
             subPage.classList.remove('active');
@@ -16,5 +14,8 @@ menuItems.forEach((menuItem, index) => {
 
         // Add 'active' class to the selected sub-page
         subPages[index].classList.add('active');
+
+        // Open the link in the current tab
+        window.location.href = menuItem.href;
     });
 });
