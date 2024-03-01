@@ -124,10 +124,11 @@
         Your browser does not support the audio element.
     </audio>
     <div>
-        <button id="playPauseBtn" onclick="togglePlayPause()">Play</button>
-        <button onclick="toggleShuffle()">Shuffle</button>
-        <button onclick="playPrevious()">Previous</button>
-        <button onclick="playNext()">Next</button>
+        <!-- Replacing text buttons with music icons -->
+        <button id="playPauseBtn" onclick="togglePlayPause()" style="background: none; border: none; cursor: pointer;"><img src="play-icon.png" alt="Play"></button>
+        <button onclick="toggleShuffle()" style="background: none; border: none; cursor: pointer;"><img src="shuffle-icon.png" alt="Shuffle"></button>
+        <button onclick="playPrevious()" style="background: none; border: none; cursor: pointer;"><img src="previous-icon.png" alt="Previous"></button>
+        <button onclick="playNext()" style="background: none; border: none; cursor: pointer;"><img src="next-icon.png" alt="Next"></button>
     </div>
 
 </section>
@@ -142,14 +143,23 @@
 <!-- Archives Section -->
 <section id="archive" class="sub-page">
     <!-- Folders in the archive -->
-    <div class="folder" onclick="showMP3Files()">
-        <a href="#">Wallpapers</a>
+    <div class="folder">
+        <a href="#wallpapers">Wallpapers</a>
     </div>
-    <div class="folder" onclick="showMP3Files()">
-        <a href="#">MP3</a>
+    <!-- MP3 files displayed vertically -->
+    <div class="folder">
+        <a href="#mp3">MP3</a>
+        <div class="file">
+            <a href="#" onclick="showPlayer()">01. Arrival.mp3</a>
+        </div>
+        <div class="file">
+            <a href="#" onclick="showPlayer()">02. Worlds Away.mp3</a>
+        </div>
+        <!-- Add more files as needed -->
     </div>
     <!-- Add more folders as needed -->
 </section>
+
 
     
     <script>
@@ -303,6 +313,13 @@ function visualize() {
             }
         });
 
+// Function to stop music and close player
+        function closePlayer() {
+            audio.pause();
+            isPlaying = false;
+            document.getElementById("playPauseBtn").innerText = "Play";
+            document.getElementById("player").style.display = "none";
+        }
         
 // Function to show MP3 files
     function showMP3Files() {
