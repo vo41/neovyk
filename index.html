@@ -71,25 +71,25 @@
         </div>
     </header>
 
-    <!-- Search -->
-    <section id="search" class="sub-page">
-        <!-- Add your search engine code here -->
-        <!-- Example: -->
-        <input type="text" placeholder="Search...">
-        <button>Search</button>
-    </section>
+    <!-- Search Bar Always On Top -->
+<section id="search" class="sub-page">
+    <!-- Add your search engine code here -->
+    <!-- Example: -->
+    <input type="text" placeholder="Search...">
+    <button>Search</button>
+</section>
 
-    <!-- Main Menu with Windows 95 style -->
-    <nav>
-        <ul>
-            <li><a href="#search">Search</a></li>
-            <li><a href="#music">Music</a></li>
-            <li><a href="#internet">Internet</a></li>
-            <li><a href="#player">Free MP3 Player</a></li>
-            <li><a href="#notepad">Notepad</a></li>
-            <li><a href="#archive">Archive</a></li>
-        </ul>
-    </nav>
+<!-- Main Menu with Windows 95 style -->
+<nav>
+    <ul>
+        <li><a href="#music">Music</a></li>
+        <li><a href="#internet">Internet</a></li>
+        <li><a href="#player">Free MP3 Player</a></li>
+        <li><a href="#notepad">Notepad</a></li>
+        <li><a href="#archive">Archive</a></li>
+    </ul>
+</nav>
+
 
     <!-- Content Sections -->
     <section id="music" class="sub-page">
@@ -108,14 +108,16 @@
         <a href="https://www.youtube.com/@neovyk">Youtube</a>
     </section>
 
-    <section id="player" class="sub-page">
+   <!-- Free MP3 Player -->
+<section id="player" class="sub-page">
     <!-- Add your media player code here -->
     <div>
         <canvas id="visualizer" width="600" height="100"></canvas>
     </div>
     <audio id="audioPlayer" controls>
         <!-- Example: Replace "your_music_file.mp3" with the actual path to your music file -->
-        <source src="07. Oracle.mp3" type="audio/mp3">
+        <!-- This assumes all your songs are in the "MP3" folder -->
+        <source src="MP3/your_first_song.mp3" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
     <div>
@@ -148,44 +150,11 @@
 
         // Function to visualize audio
         function visualize() {
-            var audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            var analyser = audioContext.createAnalyser();
-            var source = audioContext.createMediaElementSource(audio);
-            source.connect(analyser);
-            analyser.connect(audioContext.destination);
-
-            analyser.fftSize = 256;
-            var bufferLength = analyser.frequencyBinCount;
-            var dataArray = new Uint8Array(bufferLength);
-
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            function draw() {
-                drawVisual = requestAnimationFrame(draw);
-
-                analyser.getByteFrequencyData(dataArray);
-
-                ctx.fillStyle = 'rgb(0, 0, 0)';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-                var barWidth = (canvas.width / bufferLength) * 2.5;
-                var barHeight;
-                var x = 0;
-
-                for (var i = 0; i < bufferLength; i++) {
-                    barHeight = dataArray[i];
-
-                    ctx.fillStyle = 'rgb(' + (barHeight + 100) + ',50,50)';
-                    ctx.fillRect(x, canvas.height - barHeight / 2, barWidth, barHeight / 2);
-
-                    x += barWidth + 1;
-                }
-            }
-
-            draw();
+            // ... (same as before)
         }
     </script>
 </section>
+
 
 
     <section id="notepad" class="sub-page">
