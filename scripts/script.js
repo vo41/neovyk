@@ -5,19 +5,19 @@ function toggleSubPage(pageId) {
     // Toggle the visibility of the selected sub-page
     if (selectedPage) {
         selectedPage.classList.toggle('active');
+
+        // Hide all other sub-pages
+        var subPages = document.querySelectorAll('.sub-page');
+        subPages.forEach(function (page) {
+            if (page.id !== pageId && page.classList.contains('active')) {
+                page.classList.remove('active');
+            }
+        });
+
+        // Ensure the search bar remains visible only for the Archives section
+        var searchBar = document.querySelector('.search-bar');
+        searchBar.style.display = pageId === 'archives' ? 'block' : 'none';
     }
-
-    // Hide all other sub-pages
-    var subPages = document.querySelectorAll('.sub-page');
-    subPages.forEach(function (page) {
-        if (page.id !== pageId) {
-            page.classList.remove('active');
-        }
-    });
-
-    // Ensure the search bar remains visible only for the Archives section
-    var searchBar = document.querySelector('.search-bar');
-    searchBar.style.display = pageId === 'archives' ? 'block' : 'none';
 }
 
 // Function to handle menu clicks
