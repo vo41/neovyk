@@ -25,5 +25,19 @@ function draw() {
     let h = -height + map(spectrum[i], 0, 255, height, 0);
     rect(x, height, width / spectrum.length, h);
   }
+
+function togglePlay() {
+  if (audio.isPlaying()) {
+    audio.pause();
+  } else {
+    audio.play();
+  }
 }
 
+function previous() {
+  // Add logic to play the previous track
+}
+
+function next() {
+  // Add logic to play the next track
+}
