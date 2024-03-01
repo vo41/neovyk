@@ -1,6 +1,7 @@
+// scripts/mp3player.js
 function closeMp3Player() {
-    var mp3PlayerWindow = document.querySelector('.mp3player-window');
-    if (mp3PlayerWindow) {
-        mp3PlayerWindow.style.display = 'none';
+    var playerContainer = document.querySelector('.mp3-player-container');
+    if (playerContainer) {
+        playerContainer.style.display = 'none';
     }
 }
