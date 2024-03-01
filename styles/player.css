@@ -1,8 +1,33 @@
-/* player.css */
+/* styles/player.css */
 .container {
-  /* Your styling for the player container */
+    /* Existing styles */
+    /* ... */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: move;
 }
 
-/* Add styles for header, main, album-art, player, footer, etc. */
+.container.draggable {
+    cursor: move;
+}
 
-/* Customize the styling as per your design preferences */
+/* Style for the close button */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+/* Add this style for the draggable area */
+.draggable-area {
+    height: 20px; /* Adjust the height as needed */
+    background-color: #008080; /* Same color as the Windows 95 menu */
+    cursor: move;
+}
