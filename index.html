@@ -115,10 +115,7 @@
     <div>
         <canvas id="visualizer" width="600" height="100"></canvas>
     </div>
-    <audio id="audioPlayer" controls>
-        <!-- Example: Remove the source element -->
-        Your browser does not support the audio element.
-    </audio>
+    <audio id="audioPlayer" controls></audio>
     <div>
         <button id="playPauseBtn" onclick="togglePlayPause()">Play</button>
         <button onclick="toggleShuffle()">Shuffle</button>
@@ -126,79 +123,7 @@
         <button onclick="playNext()">Next</button>
     </div>
 
-    <script>
-        // JavaScript functions go here
-        var audio = document.getElementById("audioPlayer");
-        var canvas = document.getElementById("visualizer");
-        var ctx = canvas.getContext("2d");
-        var isPlaying = false;
-        var isShuffle = false;
-        var currentSongIndex = 0;
-
-        var songs = [
-            "MP3/01. Arrival.mp3",
-            "MP3/02. Worlds Away.mp3",
-            "MP3/03. Explore.mp3",
-            "MP3/04. Zero Gravity.mp3",
-            "MP3/05. Exo.mp3",
-            "MP3/06. Delta.mp3",
-            "MP3/07. Oracle.mp3",
-            "MP3/08. Aeon.mp3",
-            "MP3/09. Pathfinder.mp3",
-            "MP3/10. Wandering.mp3"
-            // Add more songs as needed
-        ];
-
-        // Function to toggle play/pause
-        function togglePlayPause() {
-            if (isPlaying) {
-                audio.pause();
-            } else {
-                audio.play();
-                visualize();
-            }
-            isPlaying = !isPlaying;
-            document.getElementById("playPauseBtn").innerText = isPlaying ? "Pause" : "Play";
-        }
-
-        // Function to toggle shuffle
-        function toggleShuffle() {
-            isShuffle = !isShuffle;
-            document.getElementById("playPauseBtn").innerText = "Play";
-            playSong();
-        }
-
-        // Function to play the previous song
-        function playPrevious() {
-            currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
-            playSong();
-        }
-
-        // Function to play the next song
-        function playNext() {
-            currentSongIndex = (currentSongIndex + 1) % songs.length;
-            playSong();
-        }
-
-        // Function to play the current song
-        function playSong() {
-            audio.src = songs[currentSongIndex];
-            if (isPlaying) {
-                audio.play();
-                visualize();
-            }
-            document.getElementById("playPauseBtn").innerText = isPlaying ? "Pause" : "Play";
-        }
-
-        // Function to visualize audio
-        function visualize() {
-            // ... (same as before)
-        }
-    </script>
 </section>
-
-
-
 
     <section id="notepad" class="sub-page">
         <!-- Add your notepad or newsletter subscription form here -->
@@ -215,38 +140,103 @@
         <!-- Add more folders as needed -->
     </section>
 
+    
     <script>
-        // JavaScript functions go here
-        function shuffleSongs() {
-            // Add logic for shuffling songs
+    // JavaScript functions go here
+    var audio = document.getElementById("audioPlayer");
+    var canvas = document.getElementById("visualizer");
+    var ctx = canvas.getContext("2d");
+    var isPlaying = false;
+    var isShuffle = false;
+    var currentSongIndex = 0;
+
+    var songs = [
+        "MP3/01. Arrival.mp3",
+        "MP3/02. Worlds Away.mp3",
+        "MP3/03. Explore.mp3",
+        "MP3/04. Zero Gravity.mp3",
+        "MP3/05. Exo.mp3",
+        "MP3/06. Delta.mp3",
+        "MP3/07. Oracle.mp3",
+        "MP3/08. Aeon.mp3",
+        "MP3/09. Pathfinder.mp3",
+        "MP3/10. Wandering.mp3"
+        // Add more songs as needed
+    ];
+
+    // Function to toggle play/pause
+    function togglePlayPause() {
+        if (isPlaying) {
+            audio.pause();
+        } else {
+            audio.play();
+            visualize();
+        }
+        isPlaying = !isPlaying;
+        document.getElementById("playPauseBtn").innerText = isPlaying ? "Pause" : "Play";
+    }
+
+    // Function to toggle shuffle
+    function toggleShuffle() {
+        isShuffle = !isShuffle;
+        document.getElementById("playPauseBtn").innerText = "Play";
+        playSong();
+    }
+
+    // Function to play the previous song
+    function playPrevious() {
+        currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+        playSong();
+    }
+
+    // Function to play the next song
+    function playNext() {
+        currentSongIndex = (currentSongIndex + 1) % songs.length;
+        playSong();
+    }
+
+    // Function to play the current song
+    function playSong() {
+        audio.src = songs[currentSongIndex];
+        if (isPlaying) {
+            audio.play();
+            visualize();
+        }
+        document.getElementById("playPauseBtn").innerText = isPlaying ? "Pause" : "Play";
+    }
+
+    // Function to visualize audio
+    function visualize() {
+        // ... (same as before)
+    }
+
+    // Function to show the selected sub-page
+    function showSubPage(pageId) {
+        // Hide all sub-pages
+        var subPages = document.querySelectorAll('.sub-page');
+        subPages.forEach(function (page) {
+            page.style.display = 'none';
+        });
+
+        // Show the selected sub-page
+        var selectedPage = document.getElementById(pageId);
+        if (selectedPage) {
+            selectedPage.style.display = 'block';
         }
 
-        // Function to show the selected sub-page
-        function showSubPage(pageId) {
-            // Hide all sub-pages
-            var subPages = document.querySelectorAll('.sub-page');
-            subPages.forEach(function(page) {
-                page.style.display = 'none';
-            });
+        // Ensure the search bar remains visible
+        document.getElementById('search').style.display = 'block';
+    }
 
-            // Show the selected sub-page
-            var selectedPage = document.getElementById(pageId);
-            if (selectedPage) {
-                selectedPage.style.display = 'block';
-            }
-        }
-
-        // Function to handle menu clicks
-        document.addEventListener('DOMContentLoaded', function() {
-            var menuLinks = document.querySelectorAll('nav a');
-            menuLinks.forEach(function(link) {
-                link.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    var pageId = link.getAttribute('href').substring(1);
-                    showSubPage(pageId);
-                });
+    // Function to handle menu clicks
+    document.addEventListener('DOMContentLoaded', function () {
+        var menuLinks = document.querySelectorAll('nav a');
+        menuLinks.forEach(function (link) {
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
+                var pageId = link.getAttribute('href').substring(1);
+                showSubPage(pageId);
             });
         });
-    </script>
-</body>
-</html>
+    });
+</script>
