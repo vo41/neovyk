@@ -110,17 +110,21 @@
     </section>
 
   <!-- Free MP3 Player -->
-<section id="player" class="sub-page">
+<section id="player" class="sub-page" style="position: absolute; top: 100px; left: 100px; display: none; background-color: #1a1a1a; border: 1px solid #666; padding: 10px;">
     <!-- Add your media player code here -->
     <div>
         <canvas id="visualizer" width="600" height="100"></canvas>
     </div>
-    <audio id="audioPlayer" controls></audio>
+    <audio id="audioPlayer" controls>
+        <!-- Example: Remove the source element -->
+        Your browser does not support the audio element.
+    </audio>
     <div>
         <button id="playPauseBtn" onclick="togglePlayPause()">Play</button>
         <button onclick="toggleShuffle()">Shuffle</button>
         <button onclick="playPrevious()">Previous</button>
         <button onclick="playNext()">Next</button>
+        <button onclick="closePlayer()">Close</button>
     </div>
 
 </section>
@@ -167,6 +171,16 @@ var songs = [
     // Add more songs as needed
 ];
 
+    // Function to close the player window
+    function closePlayer() {
+    document.getElementById("player").style.display = 'none';
+        }
+
+        // Function to show the player window
+        function showPlayer() {
+            document.getElementById("player").style.display = 'block';
+        }
+        
 // Function to toggle play/pause
 function togglePlayPause() {
     if (isPlaying) {
