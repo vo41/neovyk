@@ -1,23 +1,25 @@
-// Function to show/hide the selected sub-page
-function toggleSubPage(pageId) {
+// Function to show the selected sub-page
+function showSubPage(pageId) {
+    // Hide all sub-pages
+    var subPages = document.querySelectorAll('.sub-page');
+    subPages.forEach(function (page) {
+        page.classList.remove('active');
+    });
+
+    // Show the selected sub-page
     var selectedPage = document.getElementById(pageId);
-
-    // Toggle the visibility of the selected sub-page
     if (selectedPage) {
-        selectedPage.classList.toggle('active');
+        selectedPage.classList.add('active');
 
-        // Hide all other sub-pages
-        var subPages = document.querySelectorAll('.sub-page');
-        subPages.forEach(function (page) {
-            if (page.id !== pageId && page.classList.contains('active')) {
-                page.classList.remove('active');
-            }
-        });
-
-        // Ensure the search bar remains visible only for the Archives section
-        var searchBar = document.querySelector('.search-bar');
-        searchBar.style.display = pageId === 'archives' ? 'block' : 'none';
+        // Check if it's the MP3 Player page, then open the modal
+        if (pageId === 'player') {
+            openPlayerModal();
+        }
     }
+
+    // Ensure the search bar remains visible only for the Archives section
+    var searchBar = document.querySelector('.search-bar');
+    searchBar.style.display = pageId === 'archives' ? 'block' : 'none';
 }
 
 // Function to handle menu clicks
@@ -27,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
         link.addEventListener('click', function (event) {
             event.preventDefault();
             var pageId = link.getAttribute('href').substring(1);
-            toggleSubPage(pageId);
+            showSubPage(pageId);
         });
     });
 });
