@@ -1,5 +1,10 @@
 // script.js
 
+function closeWindow(windowId) {
+    const subPage = document.getElementById(windowId);
+    subPage.classList.remove('active');
+}
+
 // Get all the menu items and corresponding sub-pages
 const menuItems = document.querySelectorAll('.windows95 a');
 const subPages = document.querySelectorAll('.sub-page');
