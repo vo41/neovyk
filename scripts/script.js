@@ -1,8 +1,5 @@
 // script.js
 document.addEventListener('DOMContentLoaded', function () {
-    // Call openPlayerModal when the page loads
-    openPlayerModal();
-
     var menuLinks = document.querySelectorAll('nav a');
     menuLinks.forEach(function (link) {
         link.addEventListener('click', function (event) {
@@ -13,19 +10,18 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-function openPlayerModal() {
+function togglePlayerModal() {
     var playerModal = document.getElementById('playerModal');
-    if (playerModal) {
+    if (playerModal.style.display === 'block') {
+        playerModal.style.display = 'none';
+    } else {
         playerModal.style.display = 'block';
-        loadPlayerContent();
     }
 }
 
 function closePlayerModal() {
     var playerModal = document.getElementById('playerModal');
-    if (playerModal) {
-        playerModal.style.display = 'none';
-    }
+    playerModal.style.display = 'none';
 }
 
 // Function to show the selected sub-page
@@ -40,6 +36,11 @@ function showSubPage(pageId) {
     var selectedPage = document.getElementById(pageId);
     if (selectedPage) {
         selectedPage.classList.add('active');
+
+        // Check if it's the MP3 Player page, then open the modal
+        if (pageId === 'player') {
+            togglePlayerModal();
+        }
     }
 
     // Ensure the search bar remains visible only for the Archives section
