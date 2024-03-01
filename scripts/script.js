@@ -1,17 +1,20 @@
-/* Basic styling for a Windows 95 aesthetic */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #008080; /* Teal, you can change this */
-}
+// script.js
 
-.windows95 {
-    background-color: #008080;
-    padding: 10px;
-}
+// Get all the menu items and corresponding sub-pages
+const menuItems = document.querySelectorAll('.windows95 a');
+const subPages = document.querySelectorAll('.sub-page');
 
-.sub-page {
-    background-color: #ffffff;
-    border: 2px solid #008080;
-    padding: 20px;
-    margin: 10px;
-}
+// Add click event listeners to each menu item
+menuItems.forEach((menuItem, index) => {
+    menuItem.addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent the default link behavior
+
+        // Remove 'active' class from all sub-pages
+        subPages.forEach((subPage) => {
+            subPage.classList.remove('active');
+        });
+
+        // Add 'active' class to the selected sub-page
+        subPages[index].classList.add('active');
+    });
+});
