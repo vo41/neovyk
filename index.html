@@ -40,6 +40,9 @@
         nav ul {
             list-style-type: none;
             padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         nav li {
@@ -56,9 +59,21 @@
             margin-bottom: 30px;
             display: none; /* Hide by default */
         }
+
+        #search {
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
+    <!-- Search Section -->
+    <section id="search">
+        <!-- Add your search engine code here -->
+        <!-- Example: -->
+        <input type="text" placeholder="Search...">
+        <button>Search</button>
+    </section>
+
     <!-- Banner with photo and info on the right -->
     <header>
         <img src="https://i1.sndcdn.com/avatars-ltbL73iPvlWYw2Km-1r59Wg-t500x500.jpg" alt="NEOVYK's Picture">
@@ -70,8 +85,8 @@
     <!-- Main Menu with Windows 95 style -->
     <nav>
         <ul>
-            <li><a href="#music">Music</a></li>
             <li><a href="#search">Search</a></li>
+            <li><a href="#music">Music</a></li>
             <li><a href="#internet">Internet</a></li>
             <li><a href="#player">Free MP3 Player</a></li>
             <li><a href="#notepad">Notepad</a></li>
@@ -87,18 +102,22 @@
             <source src="your_music_file.mp3" type="audio/mp3">
             Your browser does not support the audio element.
         </audio>
-    </section>
-
-    <section id="search">
-        <!-- Add your search engine code here -->
-        <!-- Example: -->
-        <input type="text" placeholder="Search...">
-        <button>Search</button>
+        <p>Explore NEOVYK's music on:</p>
+        <ul>
+            <li><a href="https://neovyk.bandcamp.com">Bandcamp</a></li>
+            <li><a href="https://soundcloud.com/neovyk">Soundcloud</a></li>
+            <li><a href="https://open.spotify.com/artist/7hafaBs1ZK7G2EIi71wRX2">Spotify</a></li>
+            <li><a href="https://music.apple.com/us/artist/neovyk/1653539347">Apple Music</a></li>
+        </ul>
     </section>
 
     <section id="internet">
         <!-- Content for the Internet section goes here -->
-        <p>Placeholder for Internet content</p>
+        <p>Connect with NEOVYK on:</p>
+        <ul>
+            <li><a href="https://www.instagram.com/neovyk">Instagram</a></li>
+            <li><a href="https://www.youtube.com/@neovyk">Youtube</a></li>
+        </ul>
     </section>
 
     <section id="player">
@@ -135,28 +154,3 @@
         function showSubPage(pageId) {
             // Hide all sub-pages
             var subPages = document.querySelectorAll('section');
-            subPages.forEach(function(page) {
-                page.style.display = 'none';
-            });
-
-            // Show the selected sub-page
-            var selectedPage = document.getElementById(pageId);
-            if (selectedPage) {
-                selectedPage.style.display = 'block';
-            }
-        }
-
-        // Function to handle menu clicks
-        document.addEventListener('DOMContentLoaded', function() {
-            var menuLinks = document.querySelectorAll('nav a');
-            menuLinks.forEach(function(link) {
-                link.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    var pageId = link.getAttribute('href').substring(1);
-                    showSubPage(pageId);
-                });
-            });
-        });
-    </script>
-</body>
-</html>
