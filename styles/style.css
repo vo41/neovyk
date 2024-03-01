@@ -128,6 +128,10 @@ body {
     justify-content: space-between;
 }
 
+.window-header span {
+    color: white;
+}
+
 .window-header .close-button {
     background: none;
     border: none;
@@ -141,6 +145,43 @@ body {
     overflow-y: auto;
 }
 
+.mp3-player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.controls {
+    margin-bottom: 10px;
+}
+
+.visualizer {
+    width: 200px;
+    height: 50px;
+    background-color: #1a1a1a;
+    margin-bottom: 10px;
+}
+
+.explorer {
+    text-align: center;
+}
+
+.explorer .folder {
+    margin: 5px 0;
+}
+
+.explorer a {
+    color: #008080; /* Teal color for links */
+    text-decoration: none;
+    cursor: pointer;
+    display: block;
+    padding: 5px;
+    transition: background-color 0.3s;
+}
+
+.explorer a:hover {
+    background-color: #006666; /* Darker teal on hover, adjust as needed */
+}
 
 /* Remove the conflicting .description styles */
 /* .description {
