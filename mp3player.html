@@ -3,23 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MP3 Player</title>
     <link rel="stylesheet" href="styles/mp3player.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="scripts/mp3player.js"></script>
 </head>
 <body>
-    <div class="mp3player-window">
-        <div class="mp3player-header">
-            <span class="mp3player-title">MP3 Player</span>
-            <button class="mp3player-close" onclick="closeMp3Player()">X</button>
-        </div>
-        <div class="mp3player-content">
-            <!-- Add your MP3 player content here -->
-            <audio controls>
-                <source src="audio/01. Arrival.mp3" type="audio/mp3">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
+    <div class="mp3-player-container">
+        <button class="close-button" onclick="closeMp3Player()">X</button>
+        <audio controls id="audioPlayer">
+            <source src="audio/song1.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+        <canvas id="audioVisualizer"></canvas>
     </div>
-    <script src="scripts/mp3player.js"></script>
 </body>
 </html>
