@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEOVYK - Official Site</title>
     <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-xN3+8w+CRmp5X9rruq3gK3Nk4CV+Z/r5t8+seTqEs6AtjQvF8o+Cw6ff6SVmXmrQ7F/J/Z5lFxCVOZ5xQfEL4Q==" crossorigin="anonymous" />
 </head>
 <body>
     <!-- Banner with photo and info on the right -->
@@ -43,9 +42,14 @@
     </section>
 
     <!-- Free MP3 Player -->
-    <section id="player" class="sub-page">
-    <a href="player.html"></a>
-    </section>
+<section id="player" class="sub-page">
+    <button id="openPlayerModal">Open MP3 Player</button>
+    <div id="playerModal" class="modal">
+        <!-- This will be replaced by the content of player.html -->
+        <div id="playerContent"></div>
+        <button id="closePlayerModal">Close</button>
+    </div>
+</section>
 
 
     <section id="notepad" class="sub-page">
