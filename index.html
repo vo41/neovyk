@@ -109,8 +109,12 @@
         <a href="https://www.youtube.com/@neovyk">Youtube</a>
     </section>
 
- <!-- Free MP3 Player -->
+<!-- Free MP3 Player -->
 <section id="player" class="sub-page" style="position: absolute; top: 100px; left: 100px; display: none; background-color: #1a1a1a; border: 1px solid #666; padding: 10px;">
+
+    <!-- Close button (X icon) -->
+    <button id="closeBtn" onclick="closePlayer()" style="position: absolute; top: 5px; right: 5px; background: none; border: none; color: #fff; font-size: 18px; cursor: pointer;">&times;</button>
+
     <!-- Add your media player code here -->
     <div>
         <canvas id="visualizer" width="600" height="100"></canvas>
@@ -124,7 +128,6 @@
         <button onclick="toggleShuffle()">Shuffle</button>
         <button onclick="playPrevious()">Previous</button>
         <button onclick="playNext()">Next</button>
-        <button onclick="closePlayer()">Close</button>
     </div>
 
 </section>
@@ -275,6 +278,32 @@ function visualize() {
     draw();
 }
 
+// Variables for dragging the player window
+        var isDragging = false;
+        var xOffset = 0;
+        var yOffset = 0;
+
+        // Event listener for mouse down on the player window
+        document.getElementById("player").addEventListener('mousedown', function(e) {
+            isDragging = true;
+            xOffset = e.clientX - document.getElementById("player").getBoundingClientRect().left;
+            yOffset = e.clientY - document.getElementById("player").getBoundingClientRect().top;
+        });
+
+        // Event listener for mouse up
+        document.addEventListener('mouseup', function() {
+            isDragging = false;
+        });
+
+        // Event listener for mouse move
+        document.addEventListener('mousemove', function(e) {
+            if (isDragging) {
+                document.getElementById("player").style.left = e.clientX - xOffset + 'px';
+                document.getElementById("player").style.top = e.clientY - yOffset + 'px';
+            }
+        });
+
+        
 // Function to show MP3 files
     function showMP3Files() {
         // Replace this with logic to dynamically generate links for MP3 files
