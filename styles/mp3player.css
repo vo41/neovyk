@@ -1,36 +1,31 @@
+/* styles/mp3player.css */
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-}
-
-.mp3player-window {
-    border: 2px solid #000;
-    width: 300px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-}
-
-.mp3player-header {
-    background-color: #ccc;
-    padding: 5px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    height: 100vh;
+    background-color: #2b2b2b;
 }
 
-.mp3player-title {
-    font-weight: bold;
+.mp3-player-container {
+    position: relative;
+    background-color: #fff;
+    padding: 20px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    width: 300px;
+    text-align: center;
 }
 
-.mp3player-close {
-    background: none;
+.close-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #ff4d4d;
+    color: #fff;
     border: none;
+    padding: 5px;
     cursor: pointer;
-}
-
-.mp3player-content {
-    padding: 10px;
+    font-weight: bold;
 }
