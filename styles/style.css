@@ -202,3 +202,32 @@ body {
 .search-bar {
     margin-top: 20px;
 }
+
+.double-size {
+    width: 400px; /* You can adjust the width as needed */
+    height: 800px; /* This is double the height of a regular window */
+}
+
+.double-size .mp3-player {
+    display: flex;
+    flex-direction: column;
+}
+
+.double-size .controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.double-size .visualizer {
+    flex: 1;
+    width: 100%;
+}
+
+.double-size .audio-preview,
+.double-size .track-info,
+.double-size .explorer {
+    width: 100%;
+}
