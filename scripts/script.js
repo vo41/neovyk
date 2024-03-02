@@ -43,20 +43,12 @@ menuItems.forEach((menuItem, index) => {
 
 // Function to initialize the MP3 player
 function initializeMp3Player() {
-    // Check if the MP3 player is already initialized
-    if (window.mp3PlayerInitialized) {
-        return;
-    }
-
     // Create an audio element
     const audio = new Audio();
-    audio.src = 'audio/01. Arrival.mp3';
+    audio.src = '';
 
     // Set up the file explorer
     setupExplorer(audio);
-
-    // Set up the audio visualization
-    setupVisualization(audio);
 
     // Set a flag to indicate that the MP3 player is initialized
     window.mp3PlayerInitialized = true;
@@ -102,19 +94,8 @@ function initializeMp3Player() {
     audio.addEventListener('timeupdate', () => {
         timeSlider.value = audio.currentTime;
     });
-
-    // Resize the canvas when the window is resized
-    window.addEventListener('resize', () => {
-        const canvas = document.getElementById('visualizerCanvas');
-        canvas.width = visualizer.clientWidth;
-        canvas.height = visualizer.clientHeight;
-    });
-
-    drawVisualizer(audio);
-
-    // Set up audio preview
-    setupAudioPreview(audio);
 }
+
 
 // Function to stop the audio player
 function stopAudioPlayer(audio, playPauseButton) {
