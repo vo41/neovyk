@@ -1,5 +1,3 @@
-// script.js
-
 // Function to open a window for the specified content
 function openWindow(contentId) {
     const contentWindow = document.getElementById(contentId);
@@ -26,17 +24,19 @@ function closeWindow(contentId) {
 const menuItems = document.querySelectorAll('.windows95 a');
 const subPages = document.querySelectorAll('.sub-page');
 
-// Add click event listeners to each menu item
+// Add mousedown event listeners to each menu item
 menuItems.forEach((menuItem, index) => {
-    menuItem.addEventListener('click', (event) => {
+    menuItem.addEventListener('mousedown', (event) => {
         // Do nothing if the sub-page is already active
         if (subPages[index].classList.contains('active')) {
             return;
         }
 
-        // Close all active windows
-        subPages.forEach((subPage) => {
-            subPage.classList.remove('active');
+        // Close all active windows except the one being clicked
+        subPages.forEach((subPage, i) => {
+            if (i !== index) {
+                subPage.classList.remove('active');
+            }
         });
 
         // Add 'active' class to the selected sub-page
@@ -49,6 +49,9 @@ menuItems.forEach((menuItem, index) => {
         openWindow(contentId);
     });
 });
+
+// Make the windows draggable using jQuery UI
+$('.sub-page').draggable();
 
 // Initialize the audio player
 function initializeAudioPlayer() {
