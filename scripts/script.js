@@ -75,6 +75,20 @@ function initializeMp3Player() {
     }
     });
 
+    // Example: Previous button functionality
+    const prevButton = document.getElementById('prevBtn');
+    prevButton.addEventListener('click', () => {
+        // Call a function to handle moving to the previous track
+        playPreviousTrack();
+    });
+
+    // Example: Next button functionality
+    const nextButton = document.getElementById('nextBtn');
+    nextButton.addEventListener('click', () => {
+        // Call a function to handle moving to the next track
+        playNextTrack();
+    });
+
     // Volume control
     const volumeControl = document.getElementById('volumeControl');
     volumeControl.addEventListener('input', () => {
@@ -170,6 +184,30 @@ function setupVisualization(audio) {
         }
 
         requestAnimationFrame(draw);
+    }
+
+    // Function to play the previous track
+    function playPreviousTrack() {
+        // Your logic to handle playing the previous track
+        // ...
+
+        // For example, if you have an array of audio files
+        // and a current index, decrement the index to play the previous track
+        currentIndex = (currentIndex - 1 + audioFiles.length) % audioFiles.length;
+        audio.src = `audio/${audioFiles[currentIndex]}`;
+        audio.play();
+    }
+
+    // Function to play the next track
+    function playNextTrack() {
+        // Your logic to handle playing the next track
+        // ...
+
+        // For example, if you have an array of audio files
+        // and a current index, increment the index to play the next track
+        currentIndex = (currentIndex + 1) % audioFiles.length;
+        audio.src = `audio/${audioFiles[currentIndex]}`;
+        audio.play();
     }
 
     // Resize the canvas when the window is resized
