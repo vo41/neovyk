@@ -1,115 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEOVYK</title>
     <link rel="stylesheet" href="styles/style.css">
 </head>
+
 <body>
+
     <!-- Updated header -->
-<header class="banner">
-    <div class="header-container">
-        <div class="image-box">
-            <img src="https://i1.sndcdn.com/avatars-ltbL73iPvlWYw2Km-1r59Wg-t500x500.jpg" alt="NEOVYK's Picture">
+    <header class="banner">
+        <div class="header-container">
+            <div class="image-box">
+                <img src="https://i1.sndcdn.com/avatars-ltbL73iPvlWYw2Km-1r59Wg-t500x500.jpg" alt="NEOVYK's Picture">
+            </div>
+            <div class="info-box description">
+                <p>NEOVYK's Computer</p>
+            </div>
         </div>
-        <div class="info-box description">
-            <p>NEOVYK's Onboard Computer</p>
-        </div>
-    </div>
-</header>
+    </header>
 
     <!-- Main Menu -->
-<nav class="windows95">
-    <ul>
-        <li><a href="#" data-window="music">Music</a></li>
-        <li><a href="#" data-window="images">Images</a></li>
-        <li><a href="#" data-window="internet">Internet</a></li>
-        <li><a href="#" data-window="player">MP3 Player</a></li>
-    </ul>
-</nav>
-
+    <nav class="windows95">
+        <ul>
+            <li><a href="#" data-window="music">Music</a></li>
+            <li><a href="#" data-window="images">Images</a></li>
+            <li><a href="#" data-window="internet">Internet</a></li>
+            <li><a href="#" data-window="player">MP3 Player</a></li>
+        </ul>
+    </nav>
 
     <!-- Music Section -->
-<section id="music" class="sub-page">
-    <div class="window-container">
-        <div class="window-header">
-            <button class="close-button" onclick="closeWindow('music')">X</button>
-        </div>
-        <div class="window-content">
-            <div class="folder">
-                <a href="audio/01. Arrival.mp3">01. Arrival</a>
+    <section id="music" class="sub-page">
+        <div class="window-container">
+            <div class="window-header">
+                <button class="close-button" onclick="closeWindow('music')">X</button>
             </div>
-            <div class="folder">
-                <a href="audio/02. Worlds Away.mp3">02. Worlds Away</a>
+            <div class="window-content">
+                <div class="folder">
+                    <a href="audio/01. Arrival.mp3">01. Arrival</a>
+                </div>
+                <div class="folder">
+                    <a href="audio/02. Worlds Away.mp3">02. Worlds Away</a>
+                </div>
+                <!-- Add more divs for each audio file in the "audio" folder -->
             </div>
-            <!-- Add more divs for each audio file in the "audio" folder -->
         </div>
-    </div>
     </section>
 
     <!-- Images Section -->
-<section id="images" class="sub-page">
-    <div class="window-container">
-        <div class="window-header">
-            <button class="close-button" onclick="closeWindow('images')">X</button>
+    <section id="images" class="sub-page">
+        <div class="window-container">
+            <div class="window-header">
+                <button class="close-button" onclick="closeWindow('images')">X</button>
+            </div>
+            <div class="window-content">
+                <!-- Add your images here -->
+            </div>
         </div>
-        <div class="window-content">
-            <!-- Add your images here -->
-        </div>
-    </div>
     </section>
 
     <!-- Internet Section -->
-<section id="internet" class="sub-page">
-    <div class="window-container">
-        <div class="window-header">
-            <button class="close-button" onclick="closeWindow('internet')">X</button>
+    <section id="internet" class="sub-page">
+        <div class="window-container">
+            <div class="window-header">
+                <button class="close-button" onclick="closeWindow('internet')">X</button>
+            </div>
+            <div class="window-content">
+                <a href="https://neovyk.bandcamp.com" target="_blank">Bandcamp</a><br>
+                <a href="https://soundcloud.com/neovyk" target="_blank">Soundcloud</a><br>
+                <a href="https://open.spotify.com/artist/7hafaBs1ZK7G2EIi71wRX2" target="_blank">Spotify</a><br>
+                <a href="https://music.apple.com/us/artist/neovyk/1653539347" target="_blank">Apple Music</a><br>
+                <a href="https://www.instagram.com/neovyk" target="_blank">Instagram</a><br>
+                <a href="https://www.youtube.com/@neovyk" target="_blank">Youtube</a>
+            </div>
         </div>
-        <div class="window-content">
-            <a href="https://neovyk.bandcamp.com" target="_blank">Bandcamp</a><br>
-            <a href="https://soundcloud.com/neovyk" target="_blank">Soundcloud</a><br>
-            <a href="https://open.spotify.com/artist/7hafaBs1ZK7G2EIi71wRX2" target="_blank">Spotify</a><br>
-            <a href="https://music.apple.com/us/artist/neovyk/1653539347" target="_blank">Apple Music</a><br>
-            <a href="https://www.instagram.com/neovyk" target="_blank">Instagram</a><br>
-            <a href="https://www.youtube.com/@neovyk" target="_blank">Youtube</a>
-        </div>
-    </div>
     </section>
 
     <!-- MP3 Player Section -->
-<section id="player" class="sub-page window-container double-size">
-    <div class="window-header">
-        <span>MP3 Player</span>
-        <button class="close-button" onclick="closeWindow('player')">X</button>
-    </div>
-    <div class="mp3-player">
-        <!-- Controls -->
-        <div class="controls">
-            <button id="prevBtn">Previous</button>
-            <button id="playPauseBtn">Play</button>
-            <button id="stopBtn">Stop</button>
-            <button id="nextBtn">Next</button>
-            <input type="range" id="volumeControl" value="50" />
-            <input type="range" id="timeSlider" value="0" />
+    <section id="player" class="sub-page window-container double-size">
+        <div class="window-header">
+            <span>MP3 Player</span>
+            <button class="close-button" onclick="closeWindow('player')">X</button>
         </div>
+        <div class="mp3-player">
+            <!-- Controls -->
+            <div class="controls">
+                <button id="prevBtn">Previous</button>
+                <button id="playPauseBtn">Play</button>
+                <button id="stopBtn">Stop</button>
+                <button id="nextBtn">Next</button>
+                <input type="range" id="volumeControl" value="50" />
+                <input type="range" id="timeSlider" value="0" />
+            </div>
 
-        <!-- Explorer -->
-        <div class="explorer" id="explorer"></div>
-    </div>
-</section>
-
+            <!-- Explorer -->
+            <div class="explorer" id="explorer"></div>
+        </div>
+    </section>
 
     <!-- JavaScript goes here -->
-<script src="scripts/howler.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="scripts/script.js"></script>
+    <script src="scripts/howler.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="scripts/script.js"></script>
 
     <!-- jQuery UI script for window dragging -->
-<script>
-    $(function () {
-        $(".sub-page").draggable();
-    });
-</script>
+    <script>
+        $(function () {
+            $(".sub-page").draggable();
+        });
+    </script>
 
+</body>
+
+</html>
