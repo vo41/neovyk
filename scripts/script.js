@@ -3,15 +3,7 @@ function openWindow(contentId) {
     const contentWindow = document.getElementById(contentId);
 
     // Bring the opened window to the front
-    const allWindows = document.querySelectorAll('.sub-page');
-    let highestZIndex = 0;
-
-    allWindows.forEach((window) => {
-        const zIndex = parseInt(window.style.zIndex || 0, 10);
-        highestZIndex = Math.max(highestZIndex, zIndex);
-    });
-
-    contentWindow.style.zIndex = highestZIndex + 1;
+    contentWindow.style.zIndex = Date.now();
 
     // If the content is an audio player, initialize it
     if (contentId === 'player') {
@@ -41,12 +33,7 @@ const subPages = document.querySelectorAll('.sub-page');
 menuItems.forEach((menuItem, index) => {
     menuItem.addEventListener('click', (event) => {
         // Add 'active' class to the selected sub-page
-        subPages[index].classList.add('active');
-
-        // Get the contentId from the data-window attribute
         const contentId = menuItem.getAttribute('data-window');
-
-        // Open the window for the specified content
         openWindow(contentId);
     });
 });
@@ -65,3 +52,14 @@ function setupExplorer(audio) {
 function updateTrackInfo(audio, index) {
     // Your existing update track info code
 }
+
+// Make all sub-pages draggable
+subPages.forEach((subPage) => {
+    subPage.addEventListener('mousedown', (event) => {
+        // Bring the dragged window to the front
+        subPage.style.zIndex = Date.now();
+    });
+});
+
+// Make sure all sub-pages can be dragged
+$(".sub-page").draggable();
