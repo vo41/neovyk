@@ -66,25 +66,33 @@ function initializeMp3Player() {
     // Example: Play/Pause button functionality
     const playPauseButton = document.getElementById('playPauseBtn');
     playPauseButton.addEventListener('click', () => {
-        togglePlayPause(audio, playPauseButton);
+        if (audio.paused) {
+            audio.play();
+            playPauseButton.textContent = 'Pause';
+        } else {
+            audio.pause();
+            playPauseButton.textContent = 'Play';
+        }
     });
 
     // Example: Previous button functionality
     const prevButton = document.getElementById('prevBtn');
     prevButton.addEventListener('click', () => {
-        playPreviousTrack(audio);
+        playPreviousTrack();
     });
 
     // Example: Next button functionality
     const nextButton = document.getElementById('nextBtn');
     nextButton.addEventListener('click', () => {
-        playNextTrack(audio);
+        playNextTrack();
     });
 
     // Stop button functionality
     const stopButton = document.getElementById('stopBtn');
     stopButton.addEventListener('click', () => {
-        stopAudioPlayer(audio, playPauseButton);
+        audio.pause();
+        audio.currentTime = 0;
+        playPauseButton.textContent = 'Play';
     });
 
     // Volume control
@@ -112,17 +120,15 @@ function initializeMp3Player() {
         canvas.height = visualizer.clientHeight;
     });
 
-    drawVisualizer(audio);
+    drawVisualizer();
 
     // Set up audio preview
     setupAudioPreview(audio);
 }
 
 // Function to stop the audio player
-function stopAudioPlayer(audio, playPauseButton) {
-    audio.pause();
-    audio.currentTime = 0;
-    playPauseButton.textContent = 'Play';
+function stopAudioPlayer() {
+    // Your audio player stop code goes here
 }
 
 // Function to set up the file explorer
@@ -201,30 +207,27 @@ function setupVisualization(audio) {
     draw();
 }
 
-// Function to play or pause the audio
-function togglePlayPause(audio, playPauseButton) {
-    if (audio.paused) {
-        audio.play();
-        playPauseButton.textContent = 'Pause';
-    } else {
-        audio.pause();
-        playPauseButton.textContent = 'Play';
-    }
-}
-
 // Function to play the previous track
-function playPreviousTrack(audio) {
+function playPreviousTrack() {
     // Your logic to handle playing the previous track
     // ...
 }
 
 // Function to play the next track
-function playNextTrack(audio) {
+function playNextTrack() {
     // Your logic to handle playing the next track
     // ...
 }
 
-// Set up audio preview
+// Function to draw the visualizer
+function drawVisualizer() {
+    const canvas = document.getElementById('visualizerCanvas');
+    const context = canvas.getContext('2d');
+
+    // Your visualizer drawing code goes here
+}
+
+// Function to set up the audio preview
 function setupAudioPreview(audio) {
     const audioPreview = document.getElementById('audioPreview');
 
