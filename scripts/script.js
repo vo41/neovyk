@@ -66,27 +66,33 @@ function initializeMp3Player() {
     // Example: Play/Pause button functionality
     const playPauseButton = document.getElementById('playPauseBtn');
     playPauseButton.addEventListener('click', () => {
-    if (audio.paused) {
-        audio.play();
-        playPauseButton.textContent = 'Pause';
-    } else {
-        audio.pause();
-        playPauseButton.textContent = 'Play';
-    }
+        if (audio.paused) {
+            audio.play();
+            playPauseButton.textContent = 'Pause';
+        } else {
+            audio.pause();
+            playPauseButton.textContent = 'Play';
+        }
     });
 
     // Example: Previous button functionality
     const prevButton = document.getElementById('prevBtn');
     prevButton.addEventListener('click', () => {
-        // Call a function to handle moving to the previous track
         playPreviousTrack();
     });
 
     // Example: Next button functionality
     const nextButton = document.getElementById('nextBtn');
     nextButton.addEventListener('click', () => {
-        // Call a function to handle moving to the next track
         playNextTrack();
+    });
+
+    // Stop button functionality
+    const stopButton = document.getElementById('stopBtn');
+    stopButton.addEventListener('click', () => {
+        audio.pause();
+        audio.currentTime = 0;
+        playPauseButton.textContent = 'Play';
     });
 
     // Volume control
@@ -107,17 +113,22 @@ function initializeMp3Player() {
         timeSlider.value = audio.currentTime;
     });
 
+    // Resize the canvas when the window is resized
+    window.addEventListener('resize', () => {
+        const canvas = document.getElementById('visualizerCanvas');
+        canvas.width = visualizer.clientWidth;
+        canvas.height = visualizer.clientHeight;
+    });
+
+    drawVisualizer();
+
+    // Set up audio preview
+    setupAudioPreview(audio);
 }
 
 // Function to stop the audio player
 function stopAudioPlayer() {
-    const stopButton = document.getElementById('stopBtn');
-stopButton.addEventListener('click', () => {
-    audio.pause();
-    audio.currentTime = 0;
-    playPauseButton.textContent = 'Play';
-});
-
+    // Your audio player stop code goes here
 }
 
 // Function to set up the file explorer
@@ -147,6 +158,10 @@ function setupExplorer(audio) {
 function setupVisualization(audio) {
     const visualizer = document.getElementById('visualizer');
 
+    const canvas = document.createElement('canvas');
+    canvas.id = 'visualizerCanvas';
+    visualizer.appendChild(canvas);
+
     const context = new AudioContext();
     const src = context.createMediaElementSource(audio);
     const analyser = context.createAnalyser();
@@ -158,16 +173,13 @@ function setupVisualization(audio) {
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
 
-    const canvas = document.createElement('canvas');
-    visualizer.appendChild(canvas);
-    const ctx = canvas.getContext('2d');
-
     function draw() {
-        const WIDTH = visualizer.clientWidth;
-        const HEIGHT = visualizer.clientHeight;
+        const WIDTH = canvas.width;
+        const HEIGHT = canvas.height;
 
         analyser.getByteFrequencyData(dataArray);
 
+        const ctx = canvas.getContext('2d');
         ctx.clearRect(0, 0, WIDTH, HEIGHT);
 
         const barWidth = (WIDTH / bufferLength) * 2.5;
@@ -186,30 +198,6 @@ function setupVisualization(audio) {
         requestAnimationFrame(draw);
     }
 
-    // Function to play the previous track
-    function playPreviousTrack() {
-        // Your logic to handle playing the previous track
-        // ...
-
-        // For example, if you have an array of audio files
-        // and a current index, decrement the index to play the previous track
-        currentIndex = (currentIndex - 1 + audioFiles.length) % audioFiles.length;
-        audio.src = `audio/${audioFiles[currentIndex]}`;
-        audio.play();
-    }
-
-    // Function to play the next track
-    function playNextTrack() {
-        // Your logic to handle playing the next track
-        // ...
-
-        // For example, if you have an array of audio files
-        // and a current index, increment the index to play the next track
-        currentIndex = (currentIndex + 1) % audioFiles.length;
-        audio.src = `audio/${audioFiles[currentIndex]}`;
-        audio.play();
-    }
-
     // Resize the canvas when the window is resized
     window.addEventListener('resize', () => {
         canvas.width = visualizer.clientWidth;
@@ -219,15 +207,37 @@ function setupVisualization(audio) {
     draw();
 }
 
-// Audio preview div
-const audioPreview = document.getElementById('audioPreview');
+// Function to play the previous track
+function playPreviousTrack() {
+    // Your logic to handle playing the previous track
+    // ...
+}
 
-// Update audio preview on timeupdate
-audio.addEventListener('timeupdate', () => {
-    const currentTime = formatTime(audio.currentTime);
-    const duration = formatTime(audio.duration);
-    audioPreview.textContent = `${currentTime} / ${duration}`;
-});
+// Function to play the next track
+function playNextTrack() {
+    // Your logic to handle playing the next track
+    // ...
+}
+
+// Function to draw the visualizer
+function drawVisualizer() {
+    const canvas = document.getElementById('visualizerCanvas');
+    const context = canvas.getContext('2d');
+
+    // Your visualizer drawing code goes here
+}
+
+// Function to set up the audio preview
+function setupAudioPreview(audio) {
+    const audioPreview = document.getElementById('audioPreview');
+
+    // Update audio preview on timeupdate
+    audio.addEventListener('timeupdate', () => {
+        const currentTime = formatTime(audio.currentTime);
+        const duration = formatTime(audio.duration);
+        audioPreview.textContent = `${currentTime} / ${duration}`;
+    });
+}
 
 // Function to format time (convert seconds to mm:ss format)
 function formatTime(seconds) {
