@@ -9,7 +9,15 @@ function openWindow(contentId) {
     }
     
     // Bring the opened window to the front
-    contentWindow.style.zIndex = Date.now();
+    const allWindows = document.querySelectorAll('.sub-page');
+    let highestZIndex = 0;
+
+    allWindows.forEach((window) => {
+        const zIndex = parseInt(window.style.zIndex || 0, 10);
+        highestZIndex = Math.max(highestZIndex, zIndex);
+    });
+
+    contentWindow.style.zIndex = highestZIndex + 1;
 }
 
 // Function to close a window
