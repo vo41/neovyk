@@ -45,4 +45,65 @@ menuItems.forEach((menuItem, index) => {
     });
 });
 
-// ... (the rest of your code)
+// ... Your existing code ...
+
+// Initialize the audio player
+function initializeAudioPlayer() {
+    const audio = new Howl({
+        src: [
+            'audio/01. Arrival.mp3',
+            'audio/02. Worlds Away.mp3',
+            // Add more paths as needed
+        ],
+        html5: true,
+        volume: 0.5,
+        onplay: () => startVisualizer(),
+        onpause: () => stopVisualizer(),
+        onstop: () => stopVisualizer(),
+        onend: () => stopVisualizer(),
+        onload: () => {
+            // Set up the explorer once the audio is loaded
+            setupExplorer(audio);
+        },
+    });
+
+    // ... Your existing code ...
+
+    // Volume control
+    const volumeControl = document.getElementById('volumeControl');
+    volumeControl.addEventListener('input', () => {
+        const volume = volumeControl.value / 100;
+        audio.volume(volume);
+    });
+}
+
+// Set up the file explorer
+function setupExplorer(audio) {
+    const explorer = document.getElementById('explorer');
+    explorer.innerHTML = '';
+
+    audio._src.forEach((src, index) => {
+        const fileLink = document.createElement('a');
+        fileLink.href = '#';
+        fileLink.textContent = `Track ${index + 1}`;
+        fileLink.addEventListener('click', () => {
+            audio.stop();
+            audio.play(index);
+            updateTrackInfo(audio, index);
+        });
+
+        const listItem = document.createElement('div');
+        listItem.classList.add('folder');
+        listItem.appendChild(fileLink);
+        explorer.appendChild(listItem);
+    });
+}
+
+// Update track information
+function updateTrackInfo(audio, index) {
+    const trackInfo = document.getElementById('trackInfo');
+    const currentTrack = audio._src[index];
+    trackInfo.textContent = `Now Playing: ${currentTrack}`;
+}
+
+// ... Your existing code ...
