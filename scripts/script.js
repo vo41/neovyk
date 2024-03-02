@@ -56,12 +56,11 @@ function initializeMp3Player() {
     // Example: Play/Pause button functionality
     const playPauseButton = document.getElementById('playPauseBtn');
     playPauseButton.addEventListener('click', () => {
-        // If the audio is not playing, start playing the first track
-        if (audio.paused) {
-            playNextTrack(audio);
-        } else {
-            togglePlayPause(audio, playPauseButton);
-        }
+    if (audio.paused) {
+        playNextTrack(audio);
+    } else {
+        togglePlayPause(audio, playPauseButton);
+    }
     });
 
     // Example: Previous button functionality
@@ -139,7 +138,7 @@ function setupExplorer(audio) {
     });
 }
 
-// Function to set up the audio visualization
+// Function to create a complex visualizer
 function setupVisualization(audio) {
     const visualizer = document.getElementById('visualizer');
 
@@ -147,50 +146,84 @@ function setupVisualization(audio) {
     canvas.id = 'visualizerCanvas';
     visualizer.appendChild(canvas);
 
-    const context = new AudioContext();
-    const src = context.createMediaElementSource(audio);
-    const analyser = context.createAnalyser();
+    const ctx = canvas.getContext('2d');
 
-    src.connect(analyser);
-    analyser.connect(context.destination);
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const analyser = audioContext.createAnalyser();
+    const source = audioContext.createMediaElementSource(audio);
+
+    source.connect(analyser);
+    analyser.connect(audioContext.destination);
 
     analyser.fftSize = 256;
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
 
-    function draw() {
-        const WIDTH = canvas.width;
-        const HEIGHT = canvas.height;
+    const waveformCanvas = document.createElement('canvas');
+    waveformCanvas.id = 'waveformCanvas';
+    visualizer.appendChild(waveformCanvas);
 
+    const waveformCtx = waveformCanvas.getContext('2d');
+    const bufferLengthWaveform = analyser.fftSize;
+    const dataArrayWaveform = new Uint8Array(bufferLengthWaveform);
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    function draw() {
         analyser.getByteFrequencyData(dataArray);
 
-        const ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, WIDTH, HEIGHT);
+        ctx.fillStyle = 'rgba(26, 26, 26, 0.1)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        const barWidth = (WIDTH / bufferLength) * 2.5;
+        const barWidth = (canvas.width / bufferLength) * 2.5;
         let barHeight;
         let x = 0;
 
         for (let i = 0; i < bufferLength; i++) {
-            barHeight = dataArray[i] / 2;
+            barHeight = dataArray[i] * 2;
 
-            ctx.fillStyle = `rgb(${barHeight + 100}, 50, 50)`;
-            ctx.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
+            const hue = i * 2;
+            ctx.fillStyle = `hsl(${hue}, 100%, 50%)`;
+            ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
 
             x += barWidth + 1;
         }
 
+        analyser.getByteTimeDomainData(dataArrayWaveform);
+
+        waveformCtx.clearRect(0, 0, waveformCanvas.width, waveformCanvas.height);
+        waveformCtx.beginPath();
+        waveformCtx.lineWidth = 2;
+        waveformCtx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
+        waveformCtx.moveTo(0, (dataArrayWaveform[0] / 128) * (waveformCanvas.height / 2));
+
+        const sliceWidth = (waveformCanvas.width * 1.0) / bufferLengthWaveform;
+        for (let i = 0; i < bufferLengthWaveform; i++) {
+            const x = (i / bufferLengthWaveform) * waveformCanvas.width;
+            const y = (dataArrayWaveform[i] / 128) * (waveformCanvas.height / 2);
+
+            waveformCtx.lineTo(x, y);
+        }
+
+        waveformCtx.lineTo(waveformCanvas.width, waveformCanvas.height / 2);
+        waveformCtx.stroke();
+
         requestAnimationFrame(draw);
     }
 
-    // Resize the canvas when the window is resized
+    // Resize the canvases when the window is resized
     window.addEventListener('resize', () => {
         canvas.width = visualizer.clientWidth;
         canvas.height = visualizer.clientHeight;
+        waveformCanvas.width = visualizer.clientWidth;
+        waveformCanvas.height = visualizer.clientHeight;
     });
 
     draw();
 }
+
+// Call the function to create the complex visualizer
+setupVisualization(audio);
 
 // Function to play or pause the audio
 function togglePlayPause(audio, playPauseButton) {
