@@ -1,17 +1,15 @@
 // Function to open a window for the specified content
 function openWindow(contentId) {
     const contentWindow = document.getElementById(contentId);
-
-    // Bring the opened window to the front
-    contentWindow.style.zIndex = Date.now();
+    contentWindow.classList.add('active');
 
     // If the content is an audio player, initialize it
     if (contentId === 'player') {
-        initializeAudioPlayer();
+        initializeMp3Player();
     }
 
-    // Add 'active' class to the selected sub-page
-    contentWindow.classList.add('active');
+    // Bring the opened window to the front
+    contentWindow.style.zIndex = Date.now();
 }
 
 // Function to close a window
@@ -33,33 +31,79 @@ const subPages = document.querySelectorAll('.sub-page');
 menuItems.forEach((menuItem, index) => {
     menuItem.addEventListener('click', (event) => {
         // Add 'active' class to the selected sub-page
+        subPages[index].classList.add('active');
+
+        // Get the contentId from the data-window attribute
         const contentId = menuItem.getAttribute('data-window');
+
+        // Open the window for the specified content
         openWindow(contentId);
     });
 });
 
-// Initialize the audio player
-function initializeAudioPlayer() {
-    // Your existing audio player initialization code
+// Function to initialize the MP3 player
+function initializeMp3Player() {
+    // Check if the MP3 player is already initialized
+    if (window.mp3PlayerInitialized) {
+        return;
+    }
+
+    // Your MP3 player initialization code goes here
+
+    // For example, create an audio element
+    const audio = new Audio();
+    audio.src = 'audio/01. Arrival.mp3';
+
+    // Set up the file explorer
+    setupExplorer(audio);
+
+    // Set up the audio visualization
+    setupVisualization(audio);
+
+    // Set a flag to indicate that the MP3 player is initialized
+    window.mp3PlayerInitialized = true;
 }
 
-// Set up the file explorer
+// Function to stop the audio player
+function stopAudioPlayer() {
+    // Your audio player stop code goes here
+}
+
+// Function to set up the file explorer
 function setupExplorer(audio) {
-    // Your existing file explorer setup code
-}
+    const explorer = document.getElementById('explorer');
+    explorer.innerHTML = '';
 
-// Update track information
-function updateTrackInfo(audio, index) {
-    // Your existing update track info code
-}
+    // Your code to populate the explorer with files from the 'audio' folder
+    // Example: List all audio files in the 'audio' folder
+    const audioFiles = ['01. Arrival.mp3', '02. Worlds Away.mp3'];
 
-// Make all sub-pages draggable
-subPages.forEach((subPage) => {
-    subPage.addEventListener('mousedown', (event) => {
-        // Bring the dragged window to the front
-        subPage.style.zIndex = Date.now();
+    audioFiles.forEach((file) => {
+        const link = document.createElement('a');
+        link.href = `audio/${file}`;
+        link.textContent = file;
+        link.onclick = (event) => {
+            event.preventDefault();
+            audio.src = link.href;
+            audio.play();
+        };
+
+        explorer.appendChild(link);
     });
+}
+
+// Function to set up the audio visualization
+function setupVisualization(audio) {
+    // Your code for audio visualization goes here
+    // Example: Create a visualizer element
+    const visualizer = document.getElementById('visualizer');
+    // Your visualization code...
+}
+
+// Make the sub-pages draggable
+$(function () {
+    $(".sub-page").draggable();
 });
 
-// Make sure all sub-pages can be dragged
-$(".sub-page").draggable();
+// Call the function to initialize the MP3 player
+initializeMp3Player();
