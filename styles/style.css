@@ -1,4 +1,4 @@
-/* Add this at the beginning to style the header */
+/* Style the header */
 header {
     position: fixed; /* Set position to fixed */
     top: 0; /* Place at the top of the viewport */
@@ -203,7 +203,6 @@ body {
     margin-top: 20px;
 }
 
-/* Style for the MP3 */
 .double-size {
     width: 400px; /* You can adjust the width as needed */
     height: 600px; /* Adjusted height for a bit smaller size */
