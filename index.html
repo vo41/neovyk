@@ -82,23 +82,25 @@
 
     <!-- MP3 Player Section -->
 <section id="player" class="sub-page window-container">
-    <div class="window-header">
-        <span>MP3 Player</span>
-        <button class="close-button" onclick="closeWindow('player')">X</button>
-    </div>
+    <!-- ... (existing HTML) ... -->
     <div class="mp3-player">
         <div class="audio-preview" id="audioPreview"></div>
         <div class="controls">
+            <!-- Previous, Play/Pause, Stop, Next buttons -->
             <button id="prevBtn">Previous</button>
             <button id="playPauseBtn">Play</button>
             <button id="stopBtn">Stop</button>
             <button id="nextBtn">Next</button>
+
+            <!-- Volume and Time controls -->
             <input type="range" id="volumeControl" value="50" />
             <input type="range" id="timeSlider" value="0" />
+
+            <!-- Additional features (visualizer, track info, file explorer) -->
+            <div class="visualizer" id="visualizer"></div>
+            <div class="track-info" id="trackInfo">Track Info</div>
+            <div class="explorer" id="explorer"></div>
         </div>
-        <div class="track-info" id="trackInfo">Track Info</div>
-        <div class="visualizer" id="visualizer"></div>
-        <div class="explorer" id="explorer"></div>
     </div>
 </section>
 
