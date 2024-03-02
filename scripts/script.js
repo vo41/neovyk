@@ -78,21 +78,19 @@ function initializeMp3Player() {
     // Example: Previous button functionality
     const prevButton = document.getElementById('prevBtn');
     prevButton.addEventListener('click', () => {
-        playPreviousTrack();
+        playPreviousTrack(audio);
     });
 
     // Example: Next button functionality
     const nextButton = document.getElementById('nextBtn');
     nextButton.addEventListener('click', () => {
-        playNextTrack();
+        playNextTrack(audio);
     });
 
     // Stop button functionality
     const stopButton = document.getElementById('stopBtn');
     stopButton.addEventListener('click', () => {
-        audio.pause();
-        audio.currentTime = 0;
-        playPauseButton.textContent = 'Play';
+        stopAudioPlayer(audio, playPauseButton);
     });
 
     // Volume control
@@ -120,15 +118,17 @@ function initializeMp3Player() {
         canvas.height = visualizer.clientHeight;
     });
 
-    drawVisualizer();
+    drawVisualizer(audio);
 
     // Set up audio preview
     setupAudioPreview(audio);
 }
 
 // Function to stop the audio player
-function stopAudioPlayer() {
-    // Your audio player stop code goes here
+function stopAudioPlayer(audio, playPauseButton) {
+    audio.pause();
+    audio.currentTime = 0;
+    playPauseButton.textContent = 'Play';
 }
 
 // Function to set up the file explorer
@@ -208,19 +208,19 @@ function setupVisualization(audio) {
 }
 
 // Function to play the previous track
-function playPreviousTrack() {
+function playPreviousTrack(audio) {
     // Your logic to handle playing the previous track
     // ...
 }
 
 // Function to play the next track
-function playNextTrack() {
+function playNextTrack(audio) {
     // Your logic to handle playing the next track
     // ...
 }
 
 // Function to draw the visualizer
-function drawVisualizer() {
+function drawVisualizer(audio) {
     const canvas = document.getElementById('visualizerCanvas');
     const context = canvas.getContext('2d');
 
