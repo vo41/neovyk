@@ -76,7 +76,7 @@ function setupExplorer(audio) {
 
     // Your code to populate the explorer with files from the 'audio' folder
     // Example: List all audio files in the 'audio' folder
-    const audioFiles = ['01. Arrival.mp3', '02. Worlds Away.mp3'];
+    const audioFiles = ['01. Arrival.mp3', '02. Worlds Away.mp3', '03. Explore.mp3', '04. Zero Gravity.mp3', '05. Exo.mp3', '06. Delta.mp3', '07. Oracle.mp3', '08. Aeon.mp3', '09. Pathfinder.mp3', '10. Wandering.mp3'];
 
     audioFiles.forEach((file) => {
         const link = document.createElement('a');
