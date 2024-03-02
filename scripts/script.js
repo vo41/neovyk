@@ -68,16 +68,61 @@ function initializeMp3Player() {
     playPauseButton.addEventListener('click', () => {
         togglePlayPause(audio, playPauseButton);
     });
+
+    // Example: Previous button functionality
+    const prevButton = document.getElementById('prevBtn');
+    prevButton.addEventListener('click', () => {
+        playPreviousTrack(audio);
+    });
+
+    // Example: Next button functionality
+    const nextButton = document.getElementById('nextBtn');
+    nextButton.addEventListener('click', () => {
+        playNextTrack(audio);
+    });
+
+    // Stop button functionality
+    const stopButton = document.getElementById('stopBtn');
+    stopButton.addEventListener('click', () => {
+        stopAudioPlayer(audio, playPauseButton);
+    });
+
+    // Volume control
+    const volumeControl = document.getElementById('volumeControl');
+    volumeControl.addEventListener('input', () => {
+        audio.volume = volumeControl.value / 100;
+    });
+
+    // Time slider
+    const timeSlider = document.getElementById('timeSlider');
+    timeSlider.max = audio.duration;
+    timeSlider.addEventListener('input', () => {
+        audio.currentTime = timeSlider.value;
+    });
+
+    // Update time slider on timeupdate
+    audio.addEventListener('timeupdate', () => {
+        timeSlider.value = audio.currentTime;
+    });
+
+    // Resize the canvas when the window is resized
+    window.addEventListener('resize', () => {
+        const canvas = document.getElementById('visualizerCanvas');
+        canvas.width = visualizer.clientWidth;
+        canvas.height = visualizer.clientHeight;
+    });
+
+    drawVisualizer(audio);
+
+    // Set up audio preview
+    setupAudioPreview(audio);
 }
 
 // Function to stop the audio player
-function stopAudioPlayer() {
-    const stopButton = document.getElementById('stopBtn');
-    stopButton.addEventListener('click', () => {
-        audio.pause();
-        audio.currentTime = 0;
-        playPauseButton.textContent = 'Play';
-    });
+function stopAudioPlayer(audio, playPauseButton) {
+    audio.pause();
+    audio.currentTime = 0;
+    playPauseButton.textContent = 'Play';
 }
 
 // Function to set up the file explorer
@@ -165,6 +210,50 @@ function togglePlayPause(audio, playPauseButton) {
         audio.pause();
         playPauseButton.textContent = 'Play';
     }
+}
+
+// Function to play the previous track
+function playPreviousTrack(audio) {
+    // Your logic to handle playing the previous track
+    // ...
+
+    // For example, if you have an array of audio files
+    // and a current index, decrement the index to play the previous track
+    currentIndex = (currentIndex - 1 + audioFiles.length) % audioFiles.length;
+    audio.src = `audio/${audioFiles[currentIndex]}`;
+    audio.play();
+}
+
+// Function to play the next track
+function playNextTrack(audio) {
+    // Your logic to handle playing the next track
+    // ...
+
+    // For example, if you have an array of audio files
+    // and a current index, increment the index to play the next track
+    currentIndex = (currentIndex + 1) % audioFiles.length;
+    audio.src = `audio/${audioFiles[currentIndex]}`;
+    audio.play();
+}
+
+// Set up audio preview
+function setupAudioPreview(audio) {
+    const audioPreview = document.getElementById('audioPreview');
+
+    // Update audio preview on timeupdate
+    audio.addEventListener('timeupdate', () => {
+        const currentTime = formatTime(audio.currentTime);
+        const duration = formatTime(audio.duration);
+        audioPreview.textContent = `${currentTime} / ${duration}`;
+    });
+}
+
+// Function to format time (convert seconds to mm:ss format)
+function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+    const formattedTime = `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+    return formattedTime;
 }
 
 // Make the sub-pages draggable
