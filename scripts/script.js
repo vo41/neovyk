@@ -224,10 +224,10 @@ function drawVisualizer(audio) {
     const canvas = document.getElementById('visualizerCanvas');
     const context = canvas.getContext('2d');
 
-    // Your visualizer drawing code goes here
+    // Your visualizer drawing logic goes here
 }
 
-// Function to set up the audio preview
+// Set up audio preview
 function setupAudioPreview(audio) {
     const audioPreview = document.getElementById('audioPreview');
 
