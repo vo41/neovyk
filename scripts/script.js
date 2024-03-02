@@ -48,8 +48,6 @@ function initializeMp3Player() {
         return;
     }
 
-    // Your MP3 player initialization code goes here
-
     // Create an audio element
     const audio = new Audio();
     audio.src = 'audio/01. Arrival.mp3';
