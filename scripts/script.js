@@ -66,19 +66,44 @@ function initializeMp3Player() {
     // Example: Play/Pause button functionality
     const playPauseButton = document.getElementById('playPauseBtn');
     playPauseButton.addEventListener('click', () => {
-        if (audio.paused) {
-            audio.play();
-            playPauseButton.textContent = 'Pause';
-        } else {
-            audio.pause();
-            playPauseButton.textContent = 'Play';
-        }
+    if (audio.paused) {
+        audio.play();
+        playPauseButton.textContent = 'Pause';
+    } else {
+        audio.pause();
+        playPauseButton.textContent = 'Play';
+    }
     });
+
+    // Volume control
+    const volumeControl = document.getElementById('volumeControl');
+    volumeControl.addEventListener('input', () => {
+        audio.volume = volumeControl.value / 100;
+    });
+
+    // Time slider
+    const timeSlider = document.getElementById('timeSlider');
+    timeSlider.max = audio.duration;
+    timeSlider.addEventListener('input', () => {
+        audio.currentTime = timeSlider.value;
+    });
+
+    // Update time slider on timeupdate
+    audio.addEventListener('timeupdate', () => {
+        timeSlider.value = audio.currentTime;
+    });
+
 }
 
 // Function to stop the audio player
 function stopAudioPlayer() {
-    // Your audio player stop code goes here
+    const stopButton = document.getElementById('stopBtn');
+stopButton.addEventListener('click', () => {
+    audio.pause();
+    audio.currentTime = 0;
+    playPauseButton.textContent = 'Play';
+});
+
 }
 
 // Function to set up the file explorer
