@@ -7,6 +7,9 @@ function openWindow(contentId) {
     if (contentId === 'player') {
         initializeAudioPlayer();
     }
+    
+    // Bring the opened window to the front
+    contentWindow.style.zIndex = Date.now();
 }
 
 // Function to close a window
