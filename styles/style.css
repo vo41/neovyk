@@ -1,10 +1,15 @@
 /* Add this at the beginning to style the header */
 header {
+    position: fixed; /* Set position to fixed */
+    top: 0; /* Place at the top of the viewport */
+    left: 0; /* Place at the left of the viewport */
     background-color: teal;
     padding: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%; /* Make it take the full width */
+    z-index: 100; /* Set a high z-index to ensure it's on top of other elements */
 }
 
 .header-container {
