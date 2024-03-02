@@ -87,7 +87,9 @@
         <button class="close-button" onclick="closeWindow('player')">X</button>
     </div>
     <div class="mp3-player">
-        <div class="audio-preview" id="audioPreview"></div>
+        <!-- Visualizer on top -->
+        <div class="visualizer" id="visualizer"></div>
+
         <div class="controls">
             <!-- Previous, Play/Pause, Stop, Next buttons -->
             <button id="prevBtn">Previous</button>
@@ -98,9 +100,11 @@
             <!-- Volume and Time controls -->
             <input type="range" id="volumeControl" value="50" />
             <input type="range" id="timeSlider" value="0" />
+        </div>
 
-            <!-- Additional features (visualizer, track info, file explorer) -->
-            <div class="visualizer" id="visualizer"></div>
+        <!-- Additional features (audio preview, track info, file explorer) below the controls -->
+        <div class="additional-features">
+            <div class="audio-preview" id="audioPreview"></div>
             <div class="track-info" id="trackInfo">Track Info</div>
             <div class="explorer" id="explorer"></div>
         </div>
