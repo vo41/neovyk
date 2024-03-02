@@ -72,9 +72,8 @@ function initializeMp3Player() {
         } else {
             audio.pause();
             playPauseButton.textContent = 'Play';
-       }
+        }
     });
-}
 
 // Function to stop the audio player
 function stopAudioPlayer() {
