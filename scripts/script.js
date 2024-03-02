@@ -66,13 +66,7 @@ function initializeMp3Player() {
     // Example: Play/Pause button functionality
     const playPauseButton = document.getElementById('playPauseBtn');
     playPauseButton.addEventListener('click', () => {
-        if (audio.paused) {
-            audio.play();
-            playPauseButton.textContent = 'Pause';
-        } else {
-            audio.pause();
-            playPauseButton.textContent = 'Play';
-        }
+        togglePlayPause(audio, playPauseButton);
     });
 
     // Example: Previous button functionality
@@ -207,6 +201,17 @@ function setupVisualization(audio) {
     draw();
 }
 
+// Function to play or pause the audio
+function togglePlayPause(audio, playPauseButton) {
+    if (audio.paused) {
+        audio.play();
+        playPauseButton.textContent = 'Pause';
+    } else {
+        audio.pause();
+        playPauseButton.textContent = 'Play';
+    }
+}
+
 // Function to play the previous track
 function playPreviousTrack(audio) {
     // Your logic to handle playing the previous track
@@ -217,14 +222,6 @@ function playPreviousTrack(audio) {
 function playNextTrack(audio) {
     // Your logic to handle playing the next track
     // ...
-}
-
-// Function to draw the visualizer
-function drawVisualizer(audio) {
-    const canvas = document.getElementById('visualizerCanvas');
-    const context = canvas.getContext('2d');
-
-    // Your visualizer drawing logic goes here
 }
 
 // Set up audio preview
