@@ -203,9 +203,10 @@ body {
     margin-top: 20px;
 }
 
+/* Style for the MP3 */
 .double-size {
     width: 400px; /* You can adjust the width as needed */
-    height: 800px; /* This is double the height of a regular window */
+    height: 600px; /* Adjusted height for a bit smaller size */
 }
 
 .double-size .mp3-player {
@@ -215,15 +216,22 @@ body {
 
 .double-size .controls {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: space-between;
-    height: 100%;
+    align-items: center;
+    height: 50px; /* Adjusted height for the controls section */
 }
 
 .double-size .visualizer {
     flex: 1;
     width: 100%;
+}
+
+.double-size #audioPreview {
+    width: 100%;
+}
+
+.double-size .controls input[type="range"] {
+    width: 80%; /* Adjusted width for the audio preview slider */
 }
 
 .double-size .audio-preview,
