@@ -54,14 +54,25 @@ function initializeMp3Player() {
     window.mp3PlayerInitialized = true;
 
     // Example: Play/Pause button functionality
-    const playPauseButton = document.getElementById('playPauseBtn');
-    playPauseButton.addEventListener('click', () => {
+const playPauseButton = document.getElementById('playPauseBtn');
+playPauseButton.addEventListener('click', () => {
     if (audio.paused) {
         playNextTrack(audio);
     } else {
         togglePlayPause(audio, playPauseButton);
     }
-    });
+});
+
+// Function to toggle play/pause
+function togglePlayPause(audio, button) {
+    if (audio.paused) {
+        audio.play();
+        button.textContent = 'Pause';
+    } else {
+        audio.pause();
+        button.textContent = 'Play';
+    }
+}
 
     // Example: Previous button functionality
     const prevButton = document.getElementById('prevBtn');
@@ -69,11 +80,35 @@ function initializeMp3Player() {
         playPreviousTrack(audio);
     });
 
+    // Function to play the previous track
+    function playPreviousTrack(audio) {
+    // Your logic to handle playing the previous track
+    // ...
+
+    // For example, if you have an array of audio files
+    // and a current index, decrement the index to play the previous track
+    currentIndex = (currentIndex - 1 + audioFiles.length) % audioFiles.length;
+    audio.src = `audio/${audioFiles[currentIndex]}`;
+    audio.play();
+}
+
     // Example: Next button functionality
     const nextButton = document.getElementById('nextBtn');
     nextButton.addEventListener('click', () => {
         playNextTrack(audio);
     });
+
+    // Function to play the next track
+    function playNextTrack(audio) {
+    // Your logic to handle playing the next track
+    // ...
+
+    // For example, if you have an array of audio files
+    // and a current index, increment the index to play the next track
+    currentIndex = (currentIndex + 1) % audioFiles.length;
+    audio.src = `audio/${audioFiles[currentIndex]}`;
+    audio.play();
+}
 
     // Stop button functionality
     const stopButton = document.getElementById('stopBtn');
@@ -224,41 +259,6 @@ function setupVisualization(audio) {
 
 // Call the function to create the complex visualizer
 setupVisualization(audio);
-
-// Function to play or pause the audio
-function togglePlayPause(audio, playPauseButton) {
-    if (audio.paused) {
-        audio.play();
-        playPauseButton.textContent = 'Pause';
-    } else {
-        audio.pause();
-        playPauseButton.textContent = 'Play';
-    }
-}
-
-// Function to play the previous track
-function playPreviousTrack(audio) {
-    // Your logic to handle playing the previous track
-    // ...
-
-    // For example, if you have an array of audio files
-    // and a current index, decrement the index to play the previous track
-    currentIndex = (currentIndex - 1 + audioFiles.length) % audioFiles.length;
-    audio.src = `audio/${audioFiles[currentIndex]}`;
-    audio.play();
-}
-
-// Function to play the next track
-function playNextTrack(audio) {
-    // Your logic to handle playing the next track
-    // ...
-
-    // For example, if you have an array of audio files
-    // and a current index, increment the index to play the next track
-    currentIndex = (currentIndex + 1) % audioFiles.length;
-    audio.src = `audio/${audioFiles[currentIndex]}`;
-    audio.play();
-}
 
 // Set up audio preview
 function setupAudioPreview(audio) {
