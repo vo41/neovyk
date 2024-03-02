@@ -24,7 +24,7 @@ function closeWindow(contentId) {
 const menuItems = document.querySelectorAll('.windows95 a');
 const subPages = document.querySelectorAll('.sub-page');
 
-// Make the windows draggable using jQuery UI
+// Make all windows draggable using jQuery UI
 $('.sub-page').draggable({
     containment: 'body', // Keep the windows within the body limits
     start: function (event, ui) {
