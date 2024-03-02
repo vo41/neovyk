@@ -1,5 +1,3 @@
-// script.js
-
 // Function to open a window for the specified content
 function openWindow(contentId) {
     const contentWindow = document.getElementById(contentId);
@@ -28,6 +26,7 @@ const subPages = document.querySelectorAll('.sub-page');
 
 // Make the windows draggable using jQuery UI
 $('.sub-page').draggable({
+    containment: 'body', // Keep the windows within the body limits
     start: function (event, ui) {
         // Move the dragged window to the front
         $(this).css('z-index', 9999);
