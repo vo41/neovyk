@@ -1,3 +1,5 @@
+// script.js
+
 // Function to open a window for the specified content
 function openWindow(contentId) {
     const contentWindow = document.getElementById(contentId);
@@ -31,6 +33,11 @@ menuItems.forEach((menuItem, index) => {
         if (subPages[index].classList.contains('active')) {
             return;
         }
+
+        // Close all active windows
+        subPages.forEach((subPage) => {
+            subPage.classList.remove('active');
+        });
 
         // Add 'active' class to the selected sub-page
         subPages[index].classList.add('active');
