@@ -151,6 +151,24 @@ function setupVisualization(audio) {
     draw();
 }
 
+// Audio preview div
+    const audioPreview = document.getElementById('audioPreview');
+
+    // Update audio preview on timeupdate
+    audio.addEventListener('timeupdate', () => {
+        const currentTime = formatTime(audio.currentTime);
+        const duration = formatTime(audio.duration);
+        audioPreview.textContent = `${currentTime} / ${duration}`;
+    });
+
+    // Function to format time (convert seconds to mm:ss format)
+    function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = Math.floor(seconds % 60);
+        const formattedTime = `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+        return formattedTime;
+    }
+}
 
 // Make the sub-pages draggable
 $(function () {
