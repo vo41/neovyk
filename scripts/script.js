@@ -27,11 +27,6 @@ const subPages = document.querySelectorAll('.sub-page');
 // Add click event listeners to each menu item
 menuItems.forEach((menuItem, index) => {
     menuItem.addEventListener('click', (event) => {
-        // Do nothing if the sub-page is already active
-        if (subPages[index].classList.contains('active')) {
-            return;
-        }
-
         // Add 'active' class to the selected sub-page
         subPages[index].classList.add('active');
 
