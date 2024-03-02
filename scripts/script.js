@@ -74,6 +74,7 @@ function initializeMp3Player() {
             playPauseButton.textContent = 'Play';
         }
     });
+}
 
 // Function to stop the audio player
 function stopAudioPlayer() {
@@ -151,22 +152,21 @@ function setupVisualization(audio) {
 }
 
 // Audio preview div
-    const audioPreview = document.getElementById('audioPreview');
+const audioPreview = document.getElementById('audioPreview');
 
-    // Update audio preview on timeupdate
-    audio.addEventListener('timeupdate', () => {
-        const currentTime = formatTime(audio.currentTime);
-        const duration = formatTime(audio.duration);
-        audioPreview.textContent = `${currentTime} / ${duration}`;
-    });
+// Update audio preview on timeupdate
+audio.addEventListener('timeupdate', () => {
+    const currentTime = formatTime(audio.currentTime);
+    const duration = formatTime(audio.duration);
+    audioPreview.textContent = `${currentTime} / ${duration}`;
+});
 
-    // Function to format time (convert seconds to mm:ss format)
-    function formatTime(seconds) {
-        const minutes = Math.floor(seconds / 60);
-        const remainingSeconds = Math.floor(seconds % 60);
-        const formattedTime = `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
-        return formattedTime;
-    }
+// Function to format time (convert seconds to mm:ss format)
+function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+    const formattedTime = `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+    return formattedTime;
 }
 
 // Make the sub-pages draggable
