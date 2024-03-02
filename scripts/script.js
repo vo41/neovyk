@@ -1,3 +1,13 @@
+// Create an audio element
+const audio = new Audio();
+audio.src = '';
+
+// Add this line to declare currentIndex
+let currentIndex = 0;  // You can set it to the initial index you want
+
+// Set up the file explorer
+setupExplorer(audio);
+
 // Function to open a window for the specified content
 function openWindow(contentId) {
     const contentWindow = document.getElementById(contentId);
