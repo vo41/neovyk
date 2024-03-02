@@ -50,7 +50,7 @@ function initializeMp3Player() {
 
     // Your MP3 player initialization code goes here
 
-    // For example, create an audio element
+    // Create an audio element
     const audio = new Audio();
     audio.src = 'audio/01. Arrival.mp3';
 
@@ -62,6 +62,18 @@ function initializeMp3Player() {
 
     // Set a flag to indicate that the MP3 player is initialized
     window.mp3PlayerInitialized = true;
+
+    // Example: Play/Pause button functionality
+    const playPauseButton = document.getElementById('playPauseBtn');
+    playPauseButton.addEventListener('click', () => {
+        if (audio.paused) {
+            audio.play();
+            playPauseButton.textContent = 'Pause';
+        } else {
+            audio.pause();
+            playPauseButton.textContent = 'Play';
+       }
+    });
 }
 
 // Function to stop the audio player
@@ -94,11 +106,51 @@ function setupExplorer(audio) {
 
 // Function to set up the audio visualization
 function setupVisualization(audio) {
-    // Your code for audio visualization goes here
-    // Example: Create a visualizer element
     const visualizer = document.getElementById('visualizer');
-    // Your visualization code...
+
+    const context = new AudioContext();
+    const src = context.createMediaElementSource(audio);
+    const analyser = context.createAnalyser();
+
+    src.connect(analyser);
+    analyser.connect(context.destination);
+
+    analyser.fftSize = 256;
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+
+    const canvas = document.createElement('canvas');
+    visualizer.appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+
+    function draw() {
+        const WIDTH = canvas.width;
+        const HEIGHT = canvas.height;
+
+        analyser.getByteFrequencyData(dataArray);
+
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+        ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+        const barWidth = (WIDTH / bufferLength) * 2.5;
+        let barHeight;
+        let x = 0;
+
+        for (let i = 0; i < bufferLength; i++) {
+            barHeight = dataArray[i] / 2;
+
+            ctx.fillStyle = 'rgb(50, 205, 50)';
+            ctx.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
+
+            x += barWidth + 1;
+        }
+
+        requestAnimationFrame(draw);
+    }
+
+    draw();
 }
+
 
 // Make the sub-pages draggable
 $(function () {
