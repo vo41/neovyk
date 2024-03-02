@@ -218,21 +218,13 @@ body {
     width: 100%;
 }
 
-.double-size .audio-preview,
-.double-size .controls,
-.double-size .explorer {
-    width: 100%;
+.double-size .controls {
+    display: flex;
+    flex-direction: column;
 }
 
 .double-size .audio-preview {
-    flex: 1; /* Adjusted to allow the audio preview slider to take available space */
-}
-
-.double-size .controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 50px; /* Adjusted height for the controls section */
+    width: 100%;
 }
 
 .double-size .controls input[type="range"] {
@@ -241,4 +233,8 @@ body {
 
 .double-size .controls #volumeControl {
     width: auto; /* Adjusted width for volume control to take its natural size */
+}
+
+.double-size .explorer {
+    width: 100%;
 }
