@@ -56,7 +56,12 @@ function initializeMp3Player() {
     // Example: Play/Pause button functionality
     const playPauseButton = document.getElementById('playPauseBtn');
     playPauseButton.addEventListener('click', () => {
-        togglePlayPause(audio, playPauseButton);
+        // If the audio is not playing, start playing the first track
+        if (audio.paused) {
+            playNextTrack(audio);
+        } else {
+            togglePlayPause(audio, playPauseButton);
+        }
     });
 
     // Example: Previous button functionality
@@ -94,6 +99,13 @@ function initializeMp3Player() {
     audio.addEventListener('timeupdate', () => {
         timeSlider.value = audio.currentTime;
     });
+
+    // Example: Close button functionality
+    const closeButton = document.querySelector('#player .close-button');
+    closeButton.addEventListener('click', () => {
+    stopAudioPlayer(audio, playPauseButton);
+    });
+
 }
 
 
