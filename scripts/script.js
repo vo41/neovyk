@@ -1,5 +1,3 @@
-// script.js
-
 // Function to open a window for the specified content
 function openWindow(contentId) {
     const contentWindow = document.getElementById(contentId);
@@ -29,7 +27,12 @@ const subPages = document.querySelectorAll('.sub-page');
 // Add click event listeners to each menu item
 menuItems.forEach((menuItem, index) => {
     menuItem.addEventListener('click', (event) => {
-        // Remove 'active' class from all sub-pages
+        // Do nothing if the sub-page is already active
+        if (subPages[index].classList.contains('active')) {
+            return;
+        }
+
+        // Close all active windows
         subPages.forEach((subPage) => {
             subPage.classList.remove('active');
         });
@@ -45,65 +48,27 @@ menuItems.forEach((menuItem, index) => {
     });
 });
 
-// ... Your existing code ...
-
 // Initialize the audio player
 function initializeAudioPlayer() {
-    const audio = new Howl({
-        src: [
-            'audio/01. Arrival.mp3',
-            'audio/02. Worlds Away.mp3',
-            // Add more paths as needed
-        ],
-        html5: true,
-        volume: 0.5,
-        onplay: () => startVisualizer(),
-        onpause: () => stopVisualizer(),
-        onstop: () => stopVisualizer(),
-        onend: () => stopVisualizer(),
-        onload: () => {
-            // Set up the explorer once the audio is loaded
-            setupExplorer(audio);
-        },
-    });
-
-    // ... Your existing code ...
-
-    // Volume control
-    const volumeControl = document.getElementById('volumeControl');
-    volumeControl.addEventListener('input', () => {
-        const volume = volumeControl.value / 100;
-        audio.volume(volume);
-    });
+    // Your existing audio player initialization code
 }
 
 // Set up the file explorer
 function setupExplorer(audio) {
-    const explorer = document.getElementById('explorer');
-    explorer.innerHTML = '';
+    // Your existing file explorer setup code
+}
 
-    audio._src.forEach((src, index) => {
-        const fileLink = document.createElement('a');
-        fileLink.href = '#';
-        fileLink.textContent = `Track ${index + 1}`;
-        fileLink.addEventListener('click', () => {
-            audio.stop();
-            audio.play(index);
-            updateTrackInfo(audio, index);
-        });
+// Create file link for the explorer
+function createFileLink(audio, index) {
+    // Your existing create file link code
+}
 
-        const listItem = document.createElement('div');
-        listItem.classList.add('folder');
-        listItem.appendChild(fileLink);
-        explorer.appendChild(listItem);
-    });
+// Create explorer item
+function createExplorerItem(fileLink) {
+    // Your existing create explorer item code
 }
 
 // Update track information
 function updateTrackInfo(audio, index) {
-    const trackInfo = document.getElementById('trackInfo');
-    const currentTrack = audio._src[index];
-    trackInfo.textContent = `Now Playing: ${currentTrack}`;
+    // Your existing update track info code
 }
-
-// ... Your existing code ...
