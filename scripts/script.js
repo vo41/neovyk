@@ -1,13 +1,7 @@
 // Function to open a window for the specified content
 function openWindow(contentId) {
     const contentWindow = document.getElementById(contentId);
-    contentWindow.classList.add('active');
 
-    // If the content is an audio player, initialize it
-    if (contentId === 'player') {
-        initializeAudioPlayer();
-    }
-    
     // Bring the opened window to the front
     const allWindows = document.querySelectorAll('.sub-page');
     let highestZIndex = 0;
@@ -18,6 +12,14 @@ function openWindow(contentId) {
     });
 
     contentWindow.style.zIndex = highestZIndex + 1;
+
+    // If the content is an audio player, initialize it
+    if (contentId === 'player') {
+        initializeAudioPlayer();
+    }
+
+    // Add 'active' class to the selected sub-page
+    contentWindow.classList.add('active');
 }
 
 // Function to close a window
