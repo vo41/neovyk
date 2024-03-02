@@ -149,13 +149,12 @@ function setupVisualization(audio) {
     const ctx = canvas.getContext('2d');
 
     function draw() {
-        const WIDTH = canvas.width;
-        const HEIGHT = canvas.height;
+        const WIDTH = visualizer.clientWidth;
+        const HEIGHT = visualizer.clientHeight;
 
         analyser.getByteFrequencyData(dataArray);
 
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
-        ctx.fillRect(0, 0, WIDTH, HEIGHT);
+        ctx.clearRect(0, 0, WIDTH, HEIGHT);
 
         const barWidth = (WIDTH / bufferLength) * 2.5;
         let barHeight;
@@ -164,7 +163,7 @@ function setupVisualization(audio) {
         for (let i = 0; i < bufferLength; i++) {
             barHeight = dataArray[i] / 2;
 
-            ctx.fillStyle = 'rgb(50, 205, 50)';
+            ctx.fillStyle = `rgb(${barHeight + 100}, 50, 50)`;
             ctx.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
 
             x += barWidth + 1;
@@ -172,6 +171,12 @@ function setupVisualization(audio) {
 
         requestAnimationFrame(draw);
     }
+
+    // Resize the canvas when the window is resized
+    window.addEventListener('resize', () => {
+        canvas.width = visualizer.clientWidth;
+        canvas.height = visualizer.clientHeight;
+    });
 
     draw();
 }
