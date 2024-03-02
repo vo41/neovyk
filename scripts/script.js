@@ -32,9 +32,11 @@ menuItems.forEach((menuItem, index) => {
             return;
         }
 
-        // Close all active windows
-        subPages.forEach((subPage) => {
-            subPage.classList.remove('active');
+        // Close all active windows except the clicked one
+        subPages.forEach((subPage, i) => {
+            if (i !== index) {
+                subPage.classList.remove('active');
+            }
         });
 
         // Add 'active' class to the selected sub-page
