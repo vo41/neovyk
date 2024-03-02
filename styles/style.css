@@ -132,7 +132,7 @@ body {
     background-color: teal;
     padding: 5px;
     display: flex;
-    justify-content: space-between;
+     justify-content: flex-end; /* Align buttons to the right */
 }
 
 .window-header span {
@@ -144,6 +144,7 @@ body {
     border: none;
     color: white;
     cursor: pointer;
+    margin-left: auto; /* Push the close button to the right */
 }
 
 .window-content {
