@@ -87,29 +87,29 @@
         <button class="close-button" onclick="closeWindow('player')">X</button>
     </div>
     <div class="mp3-player">
-        <!-- Visualizer on top -->
-        <div class="visualizer" id="visualizer"></div>
-
+        <!-- Controls -->
         <div class="controls">
-            <!-- Previous, Play/Pause, Stop, Next buttons -->
             <button id="prevBtn">Previous</button>
             <button id="playPauseBtn">Play</button>
             <button id="stopBtn">Stop</button>
             <button id="nextBtn">Next</button>
-
-            <!-- Volume and Time controls -->
             <input type="range" id="volumeControl" value="50" />
             <input type="range" id="timeSlider" value="0" />
         </div>
 
-        <!-- Additional features (audio preview, track info, file explorer) below the controls -->
-        <div class="additional-features">
-            <div class="audio-preview" id="audioPreview"></div>
-            <div class="track-info" id="trackInfo">Track Info</div>
-            <div class="explorer" id="explorer"></div>
+        <!-- Explorer -->
+        <div class="explorer" id="explorer">
+            <div class="folder">
+                <a href="audio/01. Arrival.mp3">01. Arrival</a>
+            </div>
+            <div class="folder">
+                <a href="audio/02. Worlds Away.mp3">02. Worlds Away</a>
+            </div>
+            <!-- Add more divs for each audio file in the "audio" folder -->
         </div>
     </div>
 </section>
+
 
 
     <!-- JavaScript goes here -->
