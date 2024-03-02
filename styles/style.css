@@ -163,6 +163,12 @@ body {
 
 .controls {
     margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.mp3-player button {
+    margin: 0 5px; /* Adjust as needed */
 }
 
 .visualizer {
