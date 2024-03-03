@@ -11,7 +11,7 @@ const audio = new Audio();
 audio.src = '';
 
 // Set up the file explorer
-setupExplorer(audio);
+setupExplorer();
 
 // Add click event listeners to menu items
 const menuItems = document.querySelectorAll('.windows95 a');
@@ -50,72 +50,75 @@ function closeWindow(contentId) {
 function initializeMp3Player() {
     // Create an audio context after a user gesture
     document.addEventListener('click', () => {
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        const analyser = audioContext.createAnalyser();
-        const source = audioContext.createMediaElementSource(audio);
+        // Check if audio context is already created
+        if (!audio.context) {
+            audio.context = new (window.AudioContext || window.webkitAudioContext)();
+            const analyser = audio.context.createAnalyser();
+            const source = audio.context.createMediaElementSource(audio);
 
-        source.connect(analyser);
-        analyser.connect(audioContext.destination);
+            source.connect(analyser);
+            analyser.connect(audio.context.destination);
 
-        analyser.fftSize = 256;
-        const bufferLength = analyser.frequencyBinCount;
-        const dataArray = new Uint8Array(bufferLength);
+            analyser.fftSize = 256;
+            const bufferLength = analyser.frequencyBinCount;
+            const dataArray = new Uint8Array(bufferLength);
 
-        // Set up the visualizer
-        setupVisualizer(audio);
-
-        // Example: Play/Pause button functionality
-        const playPauseButton = document.getElementById('playPauseBtn');
-        playPauseButton.addEventListener('click', () => {
-            if (audio.paused) {
-                playNextTrack();
-            } else {
-                togglePlayPause();
-            }
-        });
-
-        // Example: Previous button functionality
-        const prevButton = document.getElementById('prevBtn');
-        prevButton.addEventListener('click', () => {
-            playPreviousTrack();
-        });
-
-        // Example: Next button functionality
-        const nextButton = document.getElementById('nextBtn');
-        nextButton.addEventListener('click', () => {
-            playNextTrack();
-        });
-
-        // Stop button functionality
-        const stopButton = document.getElementById('stopBtn');
-        stopButton.addEventListener('click', () => {
-            stopAudioPlayer();
-        });
-
-        // Volume control
-        const volumeControl = document.getElementById('volumeControl');
-        volumeControl.addEventListener('input', () => {
-            audio.volume = volumeControl.value / 100;
-        });
-
-        // Time slider
-        const timeSlider = document.getElementById('timeSlider');
-        timeSlider.max = audio.duration;
-        timeSlider.addEventListener('input', () => {
-            audio.currentTime = timeSlider.value;
-        });
-
-        // Update time slider on timeupdate
-        audio.addEventListener('timeupdate', () => {
-            timeSlider.value = audio.currentTime;
-        });
-
-        // Example: Close button functionality
-        const closeButton = document.querySelector('#player .close-button');
-        closeButton.addEventListener('click', () => {
-            stopAudioPlayer();
-        });
+            // Set up the visualizer
+            setupVisualizer(analyser, dataArray);
+        }
     }, { once: true });
+
+    // Example: Play/Pause button functionality
+    const playPauseButton = document.getElementById('playPauseBtn');
+    playPauseButton.addEventListener('click', () => {
+        if (audio.paused) {
+            playNextTrack();
+        } else {
+            togglePlayPause();
+        }
+    });
+
+    // Example: Previous button functionality
+    const prevButton = document.getElementById('prevBtn');
+    prevButton.addEventListener('click', () => {
+        playPreviousTrack();
+    });
+
+    // Example: Next button functionality
+    const nextButton = document.getElementById('nextBtn');
+    nextButton.addEventListener('click', () => {
+        playNextTrack();
+    });
+
+    // Stop button functionality
+    const stopButton = document.getElementById('stopBtn');
+    stopButton.addEventListener('click', () => {
+        stopAudioPlayer();
+    });
+
+    // Volume control
+    const volumeControl = document.getElementById('volumeControl');
+    volumeControl.addEventListener('input', () => {
+        audio.volume = volumeControl.value / 100;
+    });
+
+    // Time slider
+    const timeSlider = document.getElementById('timeSlider');
+    timeSlider.max = audio.duration;
+    timeSlider.addEventListener('input', () => {
+        audio.currentTime = timeSlider.value;
+    });
+
+    // Update time slider on timeupdate
+    audio.addEventListener('timeupdate', () => {
+        timeSlider.value = audio.currentTime;
+    });
+
+    // Example: Close button functionality
+    const closeButton = document.querySelector('#player .close-button');
+    closeButton.addEventListener('click', () => {
+        stopAudioPlayer();
+    });
 }
 
 // Function to play the previous track
@@ -173,22 +176,15 @@ function setupExplorer() {
 }
 
 // Function to set up the visualizer
-function setupVisualizer(audio) {
+function setupVisualizer(analyser, dataArray) {
     const visualizerCanvas = document.getElementById('visualizerCanvas');
     const visualizerCtx = visualizerCanvas.getContext('2d');
 
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    const analyser = audioContext.createAnalyser();
-    const source = audioContext.createMediaElementSource(audio);
-
-    source.connect(analyser);
-    analyser.connect(audioContext.destination);
-
     analyser.fftSize = 256;
     const bufferLength = analyser.frequencyBinCount;
-    const dataArray = new Uint8Array(bufferLength);
 
-    visualizerCtx.clearRect(0, 0, visualizerCanvas.width, visualizerCanvas.height);
+    visualizerCanvas.width = visualizerCanvas.clientWidth;
+    visualizerCanvas.height = visualizerCanvas.clientHeight;
 
     function drawVisualizer() {
         analyser.getByteFrequencyData(dataArray);
@@ -222,27 +218,5 @@ function setupVisualizer(audio) {
     drawVisualizer();
 }
 
-// Function to update audio preview
-function setupAudioPreview() {
-    const audioPreview = document.getElementById('audioPreview');
-
-    audio.addEventListener('timeupdate', () => {
-        const currentTime = formatTime(audio.currentTime);
-        const duration = formatTime(audio.duration);
-        audioPreview.textContent = `${currentTime} / ${duration}`;
-    });
-}
-
-// Function to format time (convert seconds to mm:ss format)
-function formatTime(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = Math.floor(seconds % 60);
-    const formattedTime = `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
-    return formattedTime;
-}
-
-// Call the functions
+// Call the function to initialize the MP3 player
 initializeMp3Player();
-setupVisualizer();
-setupAudioPreview();
-
