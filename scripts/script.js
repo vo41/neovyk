@@ -243,5 +243,6 @@ function formatTime(seconds) {
 
 // Call the functions
 initializeMp3Player();
-setupVisualization();
+setupVisualizer();
 setupAudioPreview();
+
