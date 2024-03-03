@@ -158,10 +158,59 @@ function setupExplorer() {
     });
 }
 
-// Function to create a complex visualizer
-function setupVisualization() {
-    // Visualization code here
+// Function to set up the visualizer
+function setupVisualizer(audio) {
+    const visualizerCanvas = document.getElementById('visualizerCanvas');
+    const visualizerCtx = visualizerCanvas.getContext('2d');
+
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const analyser = audioContext.createAnalyser();
+    const source = audioContext.createMediaElementSource(audio);
+
+    source.connect(analyser);
+    analyser.connect(audioContext.destination);
+
+    analyser.fftSize = 256;
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+
+    visualizerCtx.clearRect(0, 0, visualizerCanvas.width, visualizerCanvas.height);
+
+    function drawVisualizer() {
+        analyser.getByteFrequencyData(dataArray);
+
+        visualizerCtx.fillStyle = 'rgba(26, 26, 26, 0.1)';
+        visualizerCtx.fillRect(0, 0, visualizerCanvas.width, visualizerCanvas.height);
+
+        const barWidth = (visualizerCanvas.width / bufferLength) * 2.5;
+        let barHeight;
+        let x = 0;
+
+        for (let i = 0; i < bufferLength; i++) {
+            barHeight = dataArray[i] * 2;
+
+            const hue = i * 2;
+            visualizerCtx.fillStyle = `hsl(${hue}, 100%, 50%)`;
+            visualizerCtx.fillRect(x, visualizerCanvas.height - barHeight, barWidth, barHeight);
+
+            x += barWidth + 1;
+        }
+
+        requestAnimationFrame(drawVisualizer);
+    }
+
+    // Resize the visualizer canvas when the window is resized
+    window.addEventListener('resize', () => {
+        visualizerCanvas.width = visualizerCanvas.clientWidth;
+        visualizerCanvas.height = visualizerCanvas.clientHeight;
+    });
+
+    drawVisualizer();
 }
+
+// Call the function to set up the visualizer
+setupVisualizer(audio);
+
 
 // Function to update audio preview
 function setupAudioPreview() {
