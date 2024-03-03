@@ -166,10 +166,6 @@ img {
     align-items: center;
 }
 
-.mp3-player button {
-    margin: 0 5px;
-}
-
 .visualizer {
     width: 100%;
     height: 100px;
@@ -186,6 +182,10 @@ img {
 #visualizerCanvas {
     width: 100%;
     height: 100%;
+}
+
+.mp3-player button {
+    margin: 0 5px;
 }
 
 .explorer {
