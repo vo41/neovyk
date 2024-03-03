@@ -48,60 +48,74 @@ function closeWindow(contentId) {
 
 // Function to initialize the MP3 player
 function initializeMp3Player() {
-    // Set a flag to indicate that the MP3 player is initialized
-    window.mp3PlayerInitialized = true;
+    // Create an audio context after a user gesture
+    document.addEventListener('click', () => {
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const analyser = audioContext.createAnalyser();
+        const source = audioContext.createMediaElementSource(audio);
 
-    // Example: Play/Pause button functionality
-    const playPauseButton = document.getElementById('playPauseBtn');
-    playPauseButton.addEventListener('click', () => {
-        if (audio.paused) {
+        source.connect(analyser);
+        analyser.connect(audioContext.destination);
+
+        analyser.fftSize = 256;
+        const bufferLength = analyser.frequencyBinCount;
+        const dataArray = new Uint8Array(bufferLength);
+
+        // Set up the visualizer
+        setupVisualizer(audio);
+
+        // Example: Play/Pause button functionality
+        const playPauseButton = document.getElementById('playPauseBtn');
+        playPauseButton.addEventListener('click', () => {
+            if (audio.paused) {
+                playNextTrack();
+            } else {
+                togglePlayPause();
+            }
+        });
+
+        // Example: Previous button functionality
+        const prevButton = document.getElementById('prevBtn');
+        prevButton.addEventListener('click', () => {
+            playPreviousTrack();
+        });
+
+        // Example: Next button functionality
+        const nextButton = document.getElementById('nextBtn');
+        nextButton.addEventListener('click', () => {
             playNextTrack();
-        } else {
-            togglePlayPause();
-        }
-    });
+        });
 
-    // Example: Previous button functionality
-    const prevButton = document.getElementById('prevBtn');
-    prevButton.addEventListener('click', () => {
-        playPreviousTrack();
-    });
+        // Stop button functionality
+        const stopButton = document.getElementById('stopBtn');
+        stopButton.addEventListener('click', () => {
+            stopAudioPlayer();
+        });
 
-    // Example: Next button functionality
-    const nextButton = document.getElementById('nextBtn');
-    nextButton.addEventListener('click', () => {
-        playNextTrack();
-    });
+        // Volume control
+        const volumeControl = document.getElementById('volumeControl');
+        volumeControl.addEventListener('input', () => {
+            audio.volume = volumeControl.value / 100;
+        });
 
-    // Stop button functionality
-    const stopButton = document.getElementById('stopBtn');
-    stopButton.addEventListener('click', () => {
-        stopAudioPlayer();
-    });
+        // Time slider
+        const timeSlider = document.getElementById('timeSlider');
+        timeSlider.max = audio.duration;
+        timeSlider.addEventListener('input', () => {
+            audio.currentTime = timeSlider.value;
+        });
 
-    // Volume control
-    const volumeControl = document.getElementById('volumeControl');
-    volumeControl.addEventListener('input', () => {
-        audio.volume = volumeControl.value / 100;
-    });
+        // Update time slider on timeupdate
+        audio.addEventListener('timeupdate', () => {
+            timeSlider.value = audio.currentTime;
+        });
 
-    // Time slider
-    const timeSlider = document.getElementById('timeSlider');
-    timeSlider.max = audio.duration;
-    timeSlider.addEventListener('input', () => {
-        audio.currentTime = timeSlider.value;
-    });
-
-    // Update time slider on timeupdate
-    audio.addEventListener('timeupdate', () => {
-        timeSlider.value = audio.currentTime;
-    });
-
-    // Example: Close button functionality
-    const closeButton = document.querySelector('#player .close-button');
-    closeButton.addEventListener('click', () => {
-        stopAudioPlayer();
-    });
+        // Example: Close button functionality
+        const closeButton = document.querySelector('#player .close-button');
+        closeButton.addEventListener('click', () => {
+            stopAudioPlayer();
+        });
+    }, { once: true });
 }
 
 // Function to play the previous track
@@ -208,10 +222,6 @@ function setupVisualizer(audio) {
     drawVisualizer();
 }
 
-// Call the function to set up the visualizer
-setupVisualizer(audio);
-
-
 // Function to update audio preview
 function setupAudioPreview() {
     const audioPreview = document.getElementById('audioPreview');
@@ -230,11 +240,6 @@ function formatTime(seconds) {
     const formattedTime = `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
     return formattedTime;
 }
-
-// Make the sub-pages draggable
-$(function () {
-    $(".sub-page").draggable();
-});
 
 // Call the functions
 initializeMp3Player();
