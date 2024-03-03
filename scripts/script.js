@@ -69,27 +69,45 @@ function initializeMp3Player() {
     }, { once: true });
 
     // Example: Play/Pause button functionality
-    const playPauseButton = document.getElementById('playPauseBtn');
-    playPauseButton.addEventListener('click', () => {
-        if (audio.paused) {
-            playNextTrack();
-        } else {
-            togglePlayPause();
-        }
-    });
+const playPauseButton = document.getElementById('playPauseBtn');
+playPauseButton.addEventListener('click', () => {
+    togglePlayPause();
+});
 
-    // Example: Previous button functionality
-    const prevButton = document.getElementById('prevBtn');
-    prevButton.addEventListener('click', () => {
-        playPreviousTrack();
-    });
+// Function to toggle play/pause
+function togglePlayPause() {
+    if (audio.paused) {
+        playCurrentTrack();
+    } else {
+        audio.pause();
+    }
+}
 
-    // Example: Next button functionality
-    const nextButton = document.getElementById('nextBtn');
-    nextButton.addEventListener('click', () => {
-        playNextTrack();
-    });
+// Example: Previous button functionality
+const prevButton = document.getElementById('prevBtn');
+prevButton.addEventListener('click', () => {
+    playPreviousTrack();
+});
 
+// Example: Next button functionality
+const nextButton = document.getElementById('nextBtn');
+nextButton.addEventListener('click', () => {
+    playNextTrack();
+});
+
+// ... (Your existing code)
+
+// Function to play the previous track
+function playPreviousTrack() {
+    currentIndex = (currentIndex - 1 + audioFiles.length) % audioFiles.length;
+    playCurrentTrack();
+}
+
+// Function to play the next track
+function playNextTrack() {
+    currentIndex = (currentIndex + 1) % audioFiles.length;
+    playCurrentTrack();
+}
     // Stop button functionality
     const stopButton = document.getElementById('stopBtn');
     stopButton.addEventListener('click', () => {
