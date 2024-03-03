@@ -71,17 +71,12 @@ function initializeMp3Player() {
     // Example: Play/Pause button functionality
 const playPauseButton = document.getElementById('playPauseBtn');
 playPauseButton.addEventListener('click', () => {
-    togglePlayPause();
-});
-
-// Function to toggle play/pause
-function togglePlayPause() {
-    if (audio.paused) {
+    if (audio.paused || audio.ended) {
         playCurrentTrack();
     } else {
-        audio.pause();
+        togglePlayPause();
     }
-}
+});
 
 // Example: Previous button functionality
 const prevButton = document.getElementById('prevBtn');
@@ -95,8 +90,6 @@ nextButton.addEventListener('click', () => {
     playNextTrack();
 });
 
-// ... (Your existing code)
-
 // Function to play the previous track
 function playPreviousTrack() {
     currentIndex = (currentIndex - 1 + audioFiles.length) % audioFiles.length;
@@ -108,6 +101,7 @@ function playNextTrack() {
     currentIndex = (currentIndex + 1) % audioFiles.length;
     playCurrentTrack();
 }
+    
     // Stop button functionality
     const stopButton = document.getElementById('stopBtn');
     stopButton.addEventListener('click', () => {
