@@ -22,32 +22,24 @@
     setupExplorer();
 
     // Add click event listeners to menu items
-    const menuItems = document.querySelectorAll('.windows95 a');
-
-    menuItems.forEach((menuItem, index) => {
-        menuItem.addEventListener('click', (event) => {
-            const contentId = menuItem.getAttribute('data-window');
-            openWindow(contentId);
-        });
+const menuItems = document.querySelectorAll('.windows95 a');
+menuItems.forEach((menuItem, index) => {
+    menuItem.addEventListener('click', (event) => {
+        const contentId = menuItem.getAttribute('data-window');
+        openWindow(contentId);
     });
+});
 
     // Function to open a window for the specified content
-    function openWindow(contentId) {
-        const contentWindow = document.getElementById(contentId);
-        contentWindow.classList.add('active');
+function openWindow(contentId) {
+    const contentWindow = document.getElementById(contentId);
+    contentWindow.classList.add('active');
 
-        if (contentId === 'player') {
-            initializeMp3Player();
-        }
-
-        contentWindow.style.zIndex = Date.now();
+    if (contentId === 'player') {
+        initializeMp3Player();
     }
 
-    // Function to open MP3 Player for a specific track
-function openMp3Player(track) {
-    audio.src = `audio/${track}`;
-    openWindow('player');
-    playCurrentTrack();
+    contentWindow.style.zIndex = Date.now();
 }
 
 // Event listeners for window clicks
@@ -82,6 +74,13 @@ function bringWindowToFront(windowId) {
             stopAudioPlayer();
         }
     }
+
+// Function to open MP3 Player for a specific track
+function openMp3Player(track) {
+    audio.src = `audio/${track}`;
+    openWindow('player');
+    playCurrentTrack();
+}
 
     // Function to initialize the MP3 player
     function initializeMp3Player() {
