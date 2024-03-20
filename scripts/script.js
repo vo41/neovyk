@@ -22,11 +22,10 @@
     setupExplorer();
 
 // Add click event listeners to menu items
-const menuItems = document.querySelectorAll('.windows95 a');
-menuItems.forEach((menuItem) => {
-    menuItem.addEventListener('click', (event) => {
-        console.log('Clicked on menu item:', menuItem.getAttribute('data-window'));
-        const contentId = menuItem.getAttribute('data-window');
+document.querySelectorAll('.windows95 a').forEach(menuItem => {
+    menuItem.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default anchor behavior
+        const contentId = this.getAttribute('data-window');
         openWindow(contentId);
     });
 });
@@ -34,37 +33,25 @@ menuItems.forEach((menuItem) => {
 // Function to open a window for the specified content
 function openWindow(contentId) {
     const contentWindow = document.getElementById(contentId);
-    contentWindow.classList.add('active');
-
-    if (contentId === 'player') {
-        initializeMp3Player();
+    if (contentWindow) {
+        contentWindow.classList.add('active');
+        bringWindowToFront(contentId);
     }
-
-    contentWindow.style.zIndex = Date.now();
 }
 
+// Function to bring a window to the front
+function bringWindowToFront(windowId) {
+    // Get all windows
+    const windows = document.querySelectorAll('.sub-page');
 
-    // Event listeners for window clicks
-    document.querySelectorAll('.sub-page').forEach(window => {
-        window.addEventListener('mousedown', function () {
-            // Bring the clicked window to the front
-            bringWindowToFront(window.id);
-        });
+    // Set z-index of all windows to 1
+    windows.forEach(window => {
+        window.style.zIndex = 1;
     });
 
-    // Function to bring a window to the front
-    function bringWindowToFront(windowId) {
-        // Get all windows
-        var windows = document.querySelectorAll('.sub-page');
-
-        // Set z-index of all windows to 1
-        windows.forEach(window => {
-            window.style.zIndex = 1;
-        });
-
-        // Set z-index of the clicked window to a higher value to bring it to the front
-        document.getElementById(windowId).style.zIndex = Date.now();
-    }
+    // Set z-index of the clicked window to a higher value to bring it to the front
+    document.getElementById(windowId).style.zIndex = Date.now();
+}
 
     // Function to close a window
     function closeWindow(contentId) {
