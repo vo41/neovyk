@@ -22,48 +22,47 @@
     setupExplorer();
 
     // Add click event listeners to menu items
-const menuItems = document.querySelectorAll('.windows95 a');
-menuItems.forEach((menuItem, index) => {
-    menuItem.addEventListener('click', (event) => {
-        const contentId = menuItem.getAttribute('data-window');
-        openWindow(contentId);
+    const menuItems = document.querySelectorAll('.windows95 a');
+    menuItems.forEach((menuItem, index) => {
+        menuItem.addEventListener('click', (event) => {
+            const contentId = menuItem.getAttribute('data-window');
+            openWindow(contentId);
+        });
     });
-});
 
     // Function to open a window for the specified content
-function openWindow(contentId) {
-    const contentWindow = document.getElementById(contentId);
-    contentWindow.classList.add('active');
+    function openWindow(contentId) {
+        const contentWindow = document.getElementById(contentId);
+        contentWindow.classList.add('active');
 
-    if (contentId === 'player') {
-        initializeMp3Player();
+        if (contentId === 'player') {
+            initializeMp3Player();
+        }
+
+        contentWindow.style.zIndex = Date.now();
     }
 
-    contentWindow.style.zIndex = Date.now();
-}
-
-// Event listeners for window clicks
-document.querySelectorAll('.sub-page').forEach(window => {
-    window.addEventListener('mousedown', function () {
-        // Bring the clicked window to the front
-        bringWindowToFront(window.id);
+    // Event listeners for window clicks
+    document.querySelectorAll('.sub-page').forEach(window => {
+        window.addEventListener('mousedown', function () {
+            // Bring the clicked window to the front
+            bringWindowToFront(window.id);
+        });
     });
-});
-
 
     // Function to bring a window to the front
-function bringWindowToFront(windowId) {
-    // Get all windows
-    var windows = document.querySelectorAll('.sub-page');
+    function bringWindowToFront(windowId) {
+        // Get all windows
+        var windows = document.querySelectorAll('.sub-page');
 
-    // Set z-index of all windows to 1
-    windows.forEach(window => {
-        window.style.zIndex = 1;
-    });
+        // Set z-index of all windows to 1
+        windows.forEach(window => {
+            window.style.zIndex = 1;
+        });
 
-    // Set z-index of the clicked window to a higher value to bring it to the front
-    document.getElementById(windowId).style.zIndex = Date.now();
-}
+        // Set z-index of the clicked window to a higher value to bring it to the front
+        document.getElementById(windowId).style.zIndex = Date.now();
+    }
 
     // Function to close a window
     function closeWindow(contentId) {
@@ -75,12 +74,12 @@ function bringWindowToFront(windowId) {
         }
     }
 
-// Function to open MP3 Player for a specific track
-function openMp3Player(track) {
-    audio.src = `audio/${track}`;
-    openWindow('player');
-    playCurrentTrack();
-}
+    // Function to open MP3 Player for a specific track
+    function openMp3Player(track) {
+        audio.src = `audio/${track}`;
+        openWindow('player');
+        playCurrentTrack();
+    }
 
     // Function to initialize the MP3 player
     function initializeMp3Player() {
@@ -235,12 +234,24 @@ function openMp3Player(track) {
                 barHeight = dataArray[i] * 2;
 
                 const hue = i * 2;
-                visualizerCtx.fillStyle = `hsl(${hue}, 100%,
-            });
+                visualizerCtx.fillStyle = `hsl(${hue}, 100%, 50%)`;
+                visualizerCtx.fillRect(x, visualizerCanvas.height - barHeight, barWidth, barHeight);
 
-            drawVisualizer();
+                x += barWidth + 1;
+            }
+
+            requestAnimationFrame(drawVisualizer);
         }
 
-        // Call the function to initialize the MP3 player
-        initializeMp3Player();
-    </script>
+        // Resize the visualizer canvas when the window is resized
+        window.addEventListener('resize', () => {
+            visualizerCanvas.width = visualizerCanvas.clientWidth;
+            visualizerCanvas.height = visualizerCanvas.clientHeight;
+        });
+
+        drawVisualizer();
+    }
+
+    // Call the function to initialize the MP3 player
+    initializeMp3Player();
+</script>
