@@ -52,18 +52,18 @@
     });
 
     // Function to bring a window to the front
-    function bringWindowToFront(windowId) {
-        // Get all windows
-        var windows = document.querySelectorAll('.sub-page');
+function bringWindowToFront(windowId) {
+    // Get all windows
+    var windows = document.querySelectorAll('.sub-page');
 
-        // Set z-index of all windows to 1
-        windows.forEach(window => {
-            window.style.zIndex = 1;
-        });
+    // Set z-index of all windows to 1
+    windows.forEach(window => {
+        window.style.zIndex = 1;
+    });
 
-        // Set z-index of the clicked window to a higher value to bring it to the front
-        document.getElementById(windowId).style.zIndex = 2;
-    }
+    // Set z-index of the clicked window to a higher value to bring it to the front
+    document.getElementById(windowId).style.zIndex = Date.now();
+}
 
     // Function to close a window
     function closeWindow(contentId) {
