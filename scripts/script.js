@@ -21,10 +21,11 @@
     // Set up the file explorer
     setupExplorer();
 
-   // Add click event listeners to menu items
+// Add click event listeners to menu items
 const menuItems = document.querySelectorAll('.windows95 a');
 menuItems.forEach((menuItem) => {
     menuItem.addEventListener('click', (event) => {
+        console.log('Clicked on menu item:', menuItem.getAttribute('data-window'));
         const contentId = menuItem.getAttribute('data-window');
         openWindow(contentId);
     });
