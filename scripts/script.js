@@ -43,13 +43,21 @@
         contentWindow.style.zIndex = Date.now();
     }
 
-    // Event listeners for window clicks
-    document.querySelectorAll('.sub-page').forEach(window => {
-        window.addEventListener('mousedown', function () {
-            // Bring the clicked window to the front
-            bringWindowToFront(window.id);
-        });
+    // Function to open MP3 Player for a specific track
+function openMp3Player(track) {
+    audio.src = `audio/${track}`;
+    openWindow('player');
+    playCurrentTrack();
+}
+
+// Event listeners for window clicks
+document.querySelectorAll('.sub-page').forEach(window => {
+    window.addEventListener('mousedown', function () {
+        // Bring the clicked window to the front
+        bringWindowToFront(window.id);
     });
+});
+
 
     // Function to bring a window to the front
 function bringWindowToFront(windowId) {
