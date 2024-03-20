@@ -21,27 +21,27 @@
     // Set up the file explorer
     setupExplorer();
 
-    // Add click event listeners to menu items
-    const menuItems = document.querySelectorAll('.windows95 a');
-    menuItems.forEach((menuItem, index) => {
+   // Add click event listeners to menu items
+const menuItems = document.querySelectorAll('.windows95 a');
+menuItems.forEach((menuItem) => {
     menuItem.addEventListener('click', (event) => {
         const contentId = menuItem.getAttribute('data-window');
         openWindow(contentId);
-        });
     });
+});
 
+// Function to open a window for the specified content
+function openWindow(contentId) {
+    const contentWindow = document.getElementById(contentId);
+    contentWindow.classList.add('active');
 
-    // Function to open a window for the specified content
-    function openWindow(contentId) {
-        const contentWindow = document.getElementById(contentId);
-        contentWindow.classList.add('active');
-
-        if (contentId === 'player') {
-            initializeMp3Player();
-        }
-
-        contentWindow.style.zIndex = Date.now();
+    if (contentId === 'player') {
+        initializeMp3Player();
     }
+
+    contentWindow.style.zIndex = Date.now();
+}
+
 
     // Event listeners for window clicks
     document.querySelectorAll('.sub-page').forEach(window => {
