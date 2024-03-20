@@ -24,11 +24,12 @@
     // Add click event listeners to menu items
     const menuItems = document.querySelectorAll('.windows95 a');
     menuItems.forEach((menuItem, index) => {
-        menuItem.addEventListener('click', (event) => {
-            const contentId = menuItem.getAttribute('data-window');
-            openWindow(contentId);
+    menuItem.addEventListener('click', (event) => {
+        const contentId = menuItem.getAttribute('data-window');
+        openWindow(contentId);
         });
     });
+
 
     // Function to open a window for the specified content
     function openWindow(contentId) {
